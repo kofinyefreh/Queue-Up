@@ -3,9 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Project Todo App</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="utils.css" />
     <script src="script.js" deffer></script>
   </head>
-  <body></body>
+
+  <body>
+    <main>
+      <div class="section">
+        <!-- left pane -->
+        <section class="left--pane">
+          <div class="pad">
+            <h1 class="app--title">Queue_UP</h1>
+            <div class="overlay hidden"></div>
+            <div class="display--spaces">
+              <ul class="spaces--list">
+                <li class="space--item selected">
+                  <div>
+                    <p class="item--name">Home Chors</p>
+                    <p class="last--opened">09-11-2025</p>
+                  </div>
+                  <span class="item--nums">15</span>
+                </li>
+                <li class="space--item">
+                  <div>
+                    <p class="item--name">School Assingments</p>
+                    <p class="last--opened">09-11-2025</p>
+                  </div>
+                  <span class="item--nums hidden">15</span>
+                </li>
+                <li class="space--item">
+                  <div>
+                    <p class="item--name">Church</p>
+                    <p class="last--opened">09-11-2025</p>
+                  </div>
+                  <span class="item--nums hidden">15</span>
+                </li>
+                <li class="space--item">
+                  <div>
+                    <p class="item--name">Coding Projects</p>
+                    <p class="last--opened">09-11-2025</p>
+                  </div>
+                  <span class="item--nums hidden">15</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Form to input task -->
+            <div class="bottom--part">
+              <div class="form--space hidden">
+                <form action="#">
+                  <input type="text" placeholder="Create Space" />
+                </form>
+              </div>
+
+              <button class="btn--1">+</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="right--pane">
+          <div class="right-pad">
+            <nav>
+              <p class="space-title">School</p>
+
+              <div class="navigation">
+                <ul>
+                  <li></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>
