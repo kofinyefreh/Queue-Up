@@ -4,17 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
 
-    <title>Project Todo App</title>
+    <title>
+      Queue Up | Become more productive by knowing the tasks ahead of you!
+    </title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="utils.css" />
-    <script src="script.js" deffer></script>
+    <script src="script.js" defer></script>
   </head>
 
   <body>
@@ -23,65 +33,253 @@
         <!-- left pane -->
         <section class="left--pane">
           <div class="pad">
-            <h1 class="app--title">Queue_UP</h1>
+            <h1 class="app--title"><span>Q</span>ueue Up</h1>
             <div class="overlay hidden"></div>
             <div class="display--spaces">
               <ul class="spaces--list">
                 <li class="space--item selected">
                   <div>
-                    <p class="item--name">Home Chors</p>
+                    <p class="item--name">Home Chores</p>
                     <p class="last--opened">09-11-2025</p>
                   </div>
-                  <span class="item--nums">15</span>
+                  <span class="item--nums">10</span>
                 </li>
-                <li class="space--item">
+                <li class="">
                   <div>
                     <p class="item--name">School Assingments</p>
                     <p class="last--opened">09-11-2025</p>
                   </div>
-                  <span class="item--nums hidden">15</span>
+                  <span class="item--nums">9</span>
                 </li>
                 <li class="space--item">
                   <div>
                     <p class="item--name">Church</p>
                     <p class="last--opened">09-11-2025</p>
                   </div>
-                  <span class="item--nums hidden">15</span>
-                </li>
-                <li class="space--item">
-                  <div>
-                    <p class="item--name">Coding Projects</p>
-                    <p class="last--opened">09-11-2025</p>
-                  </div>
-                  <span class="item--nums hidden">15</span>
+                  <span class="item--nums">7</span>
                 </li>
               </ul>
             </div>
 
-            <!-- Form to input task -->
+            <!-- Form to input space -->
             <div class="bottom--part">
               <div class="form--space hidden">
                 <form action="#">
-                  <input type="text" placeholder="Create Space" />
+                  <p class="check--input">Not more than 25 chars</p>
+                  <input
+                    type="text"
+                    placeholder="Create Space"
+                    class="space--input"
+                  />
                 </form>
               </div>
 
-              <button class="btn--1">+</button>
+              <button class="btn btn--1 open--space">+</button>
+              <button class="btn btn--1 add--space hidden">
+                <i class="fa-solid fa-check tick"></i>
+              </button>
             </div>
           </div>
         </section>
 
         <section class="right--pane">
-          <div class="right-pad">
-            <nav>
-              <p class="space-title">School</p>
+          <nav class="nav-bar">
+            <p class="space-title">
+              # <span contenteditable="true">JavaScript</span>
+            </p>
 
-              <div class="navigation">
-                <ul>
-                  <li></li>
-                </ul>
-              </div>
-            </nav>
+            <div class="navigation">
+              <ul class="tabs">
+                <li class="tab selected">All <span>5</span></li>
+                <li class="tab">Pending <span>500</span></li>
+                <li class="tab">Completed <span>10</span></li>
+                <li class="tab">Archived <span>0</span></li>
+              </ul>
+              <button class="btn btn--2">+</button>
+            </div>
+          </nav>
+
+          <div class="display--tasks">
+            <!-- input-task form -->
+            <div class="form--task hidden">
+              <form action="#">
+                <input type="text" placeholder="Create Task" />
+              </form>
+            </div>
+
+            <div class="overlay-task hidden"></div>
+            <div>
+              <ul class="task-list">
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+                <li class="task">
+                  <div class="left">
+                    <div class="circle done"></div>
+                    <p class="task-name">Do all my tasks</p>
+                  </div>
+                  <div class="right">
+                    <p class="date">07-08-2025</p>
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </div>
