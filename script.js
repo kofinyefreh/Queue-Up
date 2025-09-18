@@ -1,33 +1,26 @@
 'use strict';
 ////////////////////////////////////////////////////////////
 // Global variables
-// State Variables
-let taksNum = 0;
 
 // Selections
 const leftPane = document.querySelector('.left--pane');
 const openSpace = document.querySelector('.open--space');
 const addSpace = document.querySelector('.add--space');
 const formSpace = document.querySelector('.form--space');
-const overlay1 = document.querySelector('.overlay');
+const overlaySpace = document.querySelector('.overlay');
 const spaceInput = document.querySelector('.space--input');
 const checkInput = document.querySelector('.check--input');
 const spacesList = document.querySelector('.spaces--list');
 const taskList = document.querySelector('.task-list');
+const openTask = document.querySelector('.open--task');
+const closeTask = document.querySelector('.close--task');
+const overlayTask = document.querySelector('.overlay-task');
+const taskInput = document.querySelector('.task--input');
 
 // Data Structure
 const spaces = [
-  { space: 'JavaScript', time: Date.now(), tasksNumber: taksNum },
-  { space: 'TypeScript', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Micro Services', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Prisma', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Redux Toolkit', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Kubernetes', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Next js', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Microsoft Azure', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Docker', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Zustand', time: Date.now(), tasksNumber: taksNum },
-  // { space: 'Express JS', time: Date.now(), tasksNumber: taksNum },
+  { space: 'JavaScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
 ];
 
 const tasks = [
@@ -89,66 +82,87 @@ const tasks = [
   },
 ];
 
+// State Variables
 let selected;
 
 ////////////////////////////////////////////////////////////
 // General Functions
 
 // Capitalize Words
-const capitalize = function (word) {
-  if (word.includes(' ')) {
-    let newWord = [];
-    word.split(' ').map(word => {
-      const [first, ...others] = word.toLowerCase().split('');
-      const changed = [first.toUpperCase(), ...others].join('');
-      newWord.push(changed);
+const capitalize = function (input) {
+  const cleanInput = input.trim();
+  if (cleanInput.includes(' ')) {
+    const mulWords = cleanInput.split(' ').map(word => {
+      return `${word.slice(0, 1).toUpperCase()}${word.slice(1)}`;
     });
-    return newWord.join(' ');
-  } else {
-    const [first, ...others] = word.toLowerCase().split('');
-    const changed = [first.toUpperCase(), ...others].join('');
-    return changed;
+    return mulWords.join(' ');
+  } else return `${cleanInput.slice(0, 1).toUpperCase()}${cleanInput.slice(1)}`;
+};
+
+// Open forms general function
+const openForm = function (openBtn, addbtn, form, overlay, input, chars) {
+  addbtn.classList.remove('hidden');
+  openBtn.classList.add('hidden');
+  form.classList.replace(
+    'hidden',
+    `${chars === 25 ? 'block-space-input' : 'block-task-input'}`
+  );
+  overlay.classList.remove('hidden');
+  input.focus();
+  if (input.value.trim().length >= 1 && input.value.trim().length <= chars)
+    addbtn.disabled = false;
+  else addbtn.disabled = true;
+
+  // Set check input to default
+  if (input.value.trim().length === 0) {
+    checkInput.style.color = 'rgb(23, 23, 23, 0.9);';
+    addSpace.disabled = true;
+    checkInput.textContent = `Not more than ${chars} chars`;
   }
 };
 
-// Render spaces
-const renderSpaces = function () {
+// close forms general function
+const closeForm = function (addbtn, openBtn, form, overlay) {
+  addbtn.classList.add('hidden');
+  openBtn.classList.remove('hidden');
+  form.classList.replace('block-space-input', 'hidden');
+  overlay.classList.add('hidden');
+};
+
+// build spaces
+const buildSpaces = function () {
   spacesList.innerHTML = '';
 
-  // Creating spaces
   spaces.forEach(function (space, index) {
-    // Creating dates
-    const fulldate = new Date(space.time);
-    const day = fulldate.getDate();
-    const month = fulldate.getMonth();
-    const year = fulldate.getFullYear();
-    const actualDate = `${day}/${month}/${year}`;
+    // Count task items
+    const arrList = tasks.filter(item => item.space === space.space);
 
     // Creating actual spaces
     const li = document.createElement('li');
     li.innerHTML = `
-              <div>
-                    <p class="item--name">${space.space}</p>
-                    <p class="last--opened">${actualDate}</p>
-                  </div>
-                  <span class="item--nums">${taksNum}</span>
+      <div>
+        <p class="item--name">${space.space}</p>
+        <p class="last--opened">${'date'}</p>
+        </div>
+        <span class="item--nums">${arrList.length}</span>
     `;
-    li.className = `${
-      index === 0
-        ? `space--item item--${index} selected`
-        : `space--item item--${index}`
-    }`;
+
+    // Rendering actual spaces
+    index === spaces.length - 1
+      ? (li.classList = `space--item item--${index} selected`)
+      : (li.className = `space--item item--${index}`);
     spacesList.appendChild(li);
-    selected = document.querySelector('.item--0');
   });
 };
-renderSpaces();
 
+// Render tasks
 const renderTasks = function () {
-  // Find seleted task content
-  const selTasksTitle = tasks.filter(function (item, index) {
-    const seletedTitle = selected.querySelector('.item--name').textContent;
-    return item.space === seletedTitle;
+  selected = document.querySelector('.selected');
+
+  // Find selected task content
+  const selTasksTitle = tasks.filter(function (item) {
+    const selectedTitle = selected.querySelector('.item--name').textContent;
+    return item.space === selectedTitle;
   });
   console.log(selTasksTitle);
 
@@ -173,81 +187,65 @@ const renderTasks = function () {
   });
 };
 
-////////////////////////////////////////////////////////////
-// Spaces logic
+// Check Valid input
+const checkValidInput = function (e, chars, text, btn) {
+  const valueL = e.target.value.trim().length;
 
-// Open space form
-openSpace.addEventListener('click', function () {
-  addSpace.classList.remove('hidden');
-  openSpace.classList.add('hidden');
-  formSpace.classList.replace('hidden', 'block-space-input');
-  overlay1.classList.remove('hidden');
-  spaceInput.focus();
-  if (
-    spaceInput.value.trim().length >= 1 &&
-    spaceInput.value.trim().length <= 25
-  )
-    addSpace.disabled = false;
-  else addSpace.disabled = true;
-
-  // Set check input to default
-  if (spaceInput.value.trim().length === 0) {
-    checkInput.style.color = 'rgb(23, 23, 23, 0.9);';
-    addSpace.disabled = true;
-    checkInput.textContent = 'Not more than 25 chars';
+  if (valueL >= 1 && valueL <= chars) {
+    text.style.color = 'green';
+    btn.disabled = false;
+    checkInput.textContent = `Not more than ${chars} chars`;
+  } else {
+    text.style.color = 'red';
+    btn.disabled = true;
+    text.textContent = `Should be <= ${chars} chars`;
   }
+
+  if (valueL === 0) {
+    text.style.color = 'rgb(23, 23, 23, 0.9)';
+    btn.disabled = true;
+    text.textContent = `Not more than ${chars} chars`;
+  }
+};
+
+////////////////////////////////////////////////////////////
+buildSpaces();
+renderTasks();
+
+// Open space form Event
+openSpace.addEventListener('click', function () {
+  openForm(openSpace, addSpace, formSpace, overlaySpace, spaceInput, 25);
 });
 
-// close space form
-overlay1.addEventListener('click', function () {
-  addSpace.classList.add('hidden');
-  openSpace.classList.remove('hidden');
-  formSpace.classList.replace('block-space-input', 'hidden');
-  overlay1.classList.add('hidden');
+// Close space form event
+overlaySpace.addEventListener('click', function () {
+  closeForm(addSpace, openSpace, formSpace, overlaySpace);
 });
 
 // check input validity
 spaceInput.addEventListener('input', function (e) {
-  const valueL = e.target.value.trim().length;
-
-  if (valueL >= 1 && valueL <= 25) {
-    checkInput.style.color = 'green';
-    addSpace.disabled = false;
-    checkInput.textContent = 'Not more than 25 chars';
-  } else {
-    checkInput.style.color = 'red';
-    addSpace.disabled = true;
-    checkInput.textContent = 'Should be <= 25 chars';
-  }
-
-  if (valueL === 0) {
-    checkInput.style.color = 'rgb(23, 23, 23, 0.9)';
-    addSpace.disabled = true;
-    checkInput.textContent = 'Not more than 25 chars';
-  }
+  checkValidInput(e, 25, checkInput, addSpace);
 });
 
-// Add space logic
+// Add space Event
 addSpace.addEventListener('click', function () {
   if (!addSpace.disabled) {
     const newSpace = capitalize(spaceInput.value);
 
     // Add to spaces
-    spaces.push({ space: newSpace, time: Date.now(), tasksNumber: taksNum });
+    spaces.push({ space: newSpace, time: 'date' });
     console.log(spaces);
-    renderSpaces();
+    buildSpaces();
+    renderTasks();
 
     // clear inputs and close
-    addSpace.classList.add('hidden');
-    openSpace.classList.remove('hidden');
-    formSpace.classList.replace('block-space-input', 'hidden');
-    overlay1.classList.add('hidden');
+    closeForm(addSpace, openSpace, formSpace, overlaySpace);
     spaceInput.value = '';
     checkInput.style.color = 'rgb(23, 23, 23, 0.9)';
   }
 });
 
-// Seleted item function
+// Select item event
 spacesList.addEventListener('click', function (e) {
   if (!e.target.closest('.space--item').classList.contains('space--item'))
     return;
@@ -259,7 +257,6 @@ spacesList.addEventListener('click', function (e) {
   // Set new selected item
   selected = e.target.closest('.space--item');
   selected.classList.add('selected');
-  console.log(selected);
 
   // Render Tasks from selected
   renderTasks();
@@ -268,11 +265,3 @@ spacesList.addEventListener('click', function (e) {
 // Test code
 
 console.log(spaces.at(0).time - spaces.at(1).time);
-
-const selectedTasks = tasks.filter(function (item, index) {
-  const seletedTitle = selected.querySelector('.item--name').textContent;
-  return item.space === seletedTitle;
-});
-
-console.log(selectedTasks);
-// console.log(selected);
