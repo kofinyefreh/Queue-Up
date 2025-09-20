@@ -9,13 +9,17 @@ const addSpace = document.querySelector('.add--space');
 const formSpace = document.querySelector('.form--space');
 const overlaySpace = document.querySelector('.overlay');
 const spaceInput = document.querySelector('.space--input');
-const checkInput = document.querySelector('.check--input');
+const taskText = document.querySelector('.task-text');
+const spaceText = document.querySelector('.space-text');
 const spacesList = document.querySelector('.spaces--list');
 const taskList = document.querySelector('.task-list');
 const openTask = document.querySelector('.open--task');
+const addTask = document.querySelector('.add--task');
 const closeTask = document.querySelector('.close--task');
 const overlayTask = document.querySelector('.overlay-task');
 const taskInput = document.querySelector('.task--input');
+const formTask = document.querySelector('.form--task');
+const spaceTitle = document.querySelector('.space-title');
 
 // Data Structure
 const spaces = [
@@ -26,7 +30,7 @@ const spaces = [
 const tasks = [
   {
     id: 0,
-    task: 'Complete the of the JS course by Sep ending',
+    task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi sapiente quisquam impedit veniam cum, illo, vitae odit dolorem natus, velit at quos error. Qui, modi. Necessitatibus reprehenderit voluptas dicta! Sed.',
     time: Date.now(),
     archived: false,
     completed: false,
@@ -34,7 +38,7 @@ const tasks = [
   },
   {
     id: 0,
-    task: 'Complete the of the JS course by Sep ending',
+    task: 'Complete the of the JS course by Sep ending ',
     time: Date.now(),
     archived: false,
     completed: false,
@@ -100,7 +104,15 @@ const capitalize = function (input) {
 };
 
 // Open forms general function
-const openForm = function (openBtn, addbtn, form, overlay, input, chars) {
+const openForm = function (
+  openBtn,
+  addbtn,
+  form,
+  overlay,
+  input,
+  chars,
+  check
+) {
   addbtn.classList.remove('hidden');
   openBtn.classList.add('hidden');
   form.classList.replace(
@@ -115,17 +127,20 @@ const openForm = function (openBtn, addbtn, form, overlay, input, chars) {
 
   // Set check input to default
   if (input.value.trim().length === 0) {
-    checkInput.style.color = 'rgb(23, 23, 23, 0.9);';
+    check.style.color = 'rgb(23, 23, 23, 0.9);';
     addSpace.disabled = true;
-    checkInput.textContent = `Not more than ${chars} chars`;
+    check.textContent = `Not more than ${chars} chars`;
   }
 };
 
 // close forms general function
-const closeForm = function (addbtn, openBtn, form, overlay) {
+const closeForm = function (addbtn, openBtn, form, overlay, chars) {
   addbtn.classList.add('hidden');
   openBtn.classList.remove('hidden');
-  form.classList.replace('block-space-input', 'hidden');
+  form.classList.replace(
+    `${chars === 25 ? 'block-space-input' : 'block-task-input'}`,
+    'hidden'
+  );
   overlay.classList.add('hidden');
 };
 
@@ -159,6 +174,9 @@ const buildSpaces = function () {
 const renderTasks = function () {
   selected = document.querySelector('.selected');
 
+  // Display selected space title
+  spaceTitle.textContent = selected.querySelector('.item--name').textContent;
+
   // Find selected task content
   const selTasksTitle = tasks.filter(function (item) {
     const selectedTitle = selected.querySelector('.item--name').textContent;
@@ -187,44 +205,49 @@ const renderTasks = function () {
   });
 };
 
-// Check Valid input
-const checkValidInput = function (e, chars, text, btn) {
-  const valueL = e.target.value.trim().length;
-
-  if (valueL >= 1 && valueL <= chars) {
-    text.style.color = 'green';
-    btn.disabled = false;
-    checkInput.textContent = `Not more than ${chars} chars`;
-  } else {
-    text.style.color = 'red';
-    btn.disabled = true;
-    text.textContent = `Should be <= ${chars} chars`;
-  }
-
-  if (valueL === 0) {
-    text.style.color = 'rgb(23, 23, 23, 0.9)';
-    btn.disabled = true;
-    text.textContent = `Not more than ${chars} chars`;
-  }
-};
-
 ////////////////////////////////////////////////////////////
+// LEFT PANE
+
 buildSpaces();
 renderTasks();
 
 // Open space form Event
 openSpace.addEventListener('click', function () {
-  openForm(openSpace, addSpace, formSpace, overlaySpace, spaceInput, 25);
+  openForm(
+    openSpace,
+    addSpace,
+    formSpace,
+    overlaySpace,
+    spaceInput,
+    25,
+    spaceText
+  );
 });
 
 // Close space form event
 overlaySpace.addEventListener('click', function () {
-  closeForm(addSpace, openSpace, formSpace, overlaySpace);
+  closeForm(addSpace, openSpace, formSpace, overlaySpace, 25);
 });
 
 // check input validity
 spaceInput.addEventListener('input', function (e) {
-  checkValidInput(e, 25, checkInput, addSpace);
+  const valueL = e.target.value.trim().length;
+
+  if (valueL >= 1 && valueL <= 25) {
+    spaceText.style.color = 'green';
+    addSpace.disabled = false;
+    spaceText.textContent = `Not more than ${25} chars`;
+  } else {
+    spaceText.style.color = 'red';
+    addSpace.disabled = true;
+    spaceText.textContent = `Should be <= ${25} chars`;
+  }
+
+  if (valueL === 0) {
+    spaceText.style.color = 'rgb(23, 23, 23, 0.9)';
+    addSpace.disabled = true;
+    spaceText.textContent = `Not more than ${25} chars`;
+  }
 });
 
 // Add space Event
@@ -239,9 +262,9 @@ addSpace.addEventListener('click', function () {
     renderTasks();
 
     // clear inputs and close
-    closeForm(addSpace, openSpace, formSpace, overlaySpace);
+    closeForm(addSpace, openSpace, formSpace, overlaySpace, 25);
     spaceInput.value = '';
-    checkInput.style.color = 'rgb(23, 23, 23, 0.9)';
+    spaceText.style.color = 'rgb(23, 23, 23, 0.9)';
   }
 });
 
@@ -262,6 +285,64 @@ spacesList.addEventListener('click', function (e) {
   renderTasks();
 });
 
-// Test code
+////////////////////////////////////////////////////////////
+// RIGHT PANE
+openTask.addEventListener('click', function () {
+  openForm(openTask, addTask, formTask, overlayTask, taskInput, 100, taskText);
+});
 
+overlayTask.addEventListener('click', function () {
+  closeForm(addTask, openTask, formTask, overlayTask, 100);
+});
+
+// check input validity
+taskInput.addEventListener('input', function (e) {
+  const valueL = e.target.value.trim().length;
+
+  if (valueL >= 1 && valueL <= 100) {
+    taskText.style.color = 'green';
+    addTask.disabled = false;
+    taskText.textContent = `Not more than 100 chars`;
+  } else {
+    taskText.style.color = 'red';
+    addTask.disabled = true;
+    taskText.textContent = `Should be <= 100 chars`;
+  }
+
+  if (valueL === 0) {
+    taskText.style.color = 'rgb(23, 23, 23, 0.9)';
+    addTask.disabled = true;
+    taskText.textContent = `Not more than 100 chars`;
+  }
+});
+
+// Add task event
+addTask.addEventListener('click', function () {
+  if (!addTask.disabled) {
+    // const newSpace = capitalize(spaceInput.value);
+    const spaceName = selected.querySelector('.item--name');
+    console.log(spaceName.textContent);
+
+    // Add to spaces
+    tasks.unshift({
+      id: 0,
+      task: taskInput.value,
+      time: Date.now(),
+      archived: false,
+      completed: false,
+      space: spaceName.textContent,
+    });
+
+    // buildSpaces();
+    renderTasks();
+
+    // clear inputs and close
+    closeForm(addTask, openTask, formTask, overlayTask, 100);
+    taskInput.value = '';
+    taskText.style.color = 'rgb(23, 23, 23, 0.9)';
+  }
+});
+
+///////////////////////////////////////////////////////////////////////
+// Test code
 console.log(spaces.at(0).time - spaces.at(1).time);
