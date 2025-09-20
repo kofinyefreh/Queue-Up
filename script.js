@@ -20,6 +20,9 @@ const overlayTask = document.querySelector('.overlay-task');
 const taskInput = document.querySelector('.task--input');
 const formTask = document.querySelector('.form--task');
 const spaceTitle = document.querySelector('.space-title');
+const [allNum, pendingNum, completedNum, archivedNum] =
+  document.querySelectorAll('.tab-num');
+const [all, pending, completed, archived] = document.querySelectorAll('.tab');
 
 // Data Structure
 const spaces = [
@@ -33,14 +36,14 @@ const tasks = [
     task: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi sapiente quisquam impedit veniam cum, illo, vitae odit dolorem natus, velit at quos error. Qui, modi. Necessitatibus reprehenderit voluptas dicta! Sed.',
     time: Date.now(),
     archived: false,
-    completed: false,
+    completed: true,
     space: 'JavaScript',
   },
   {
     id: 0,
     task: 'Complete the of the JS course by Sep ending ',
     time: Date.now(),
-    archived: false,
+    archived: true,
     completed: false,
     space: 'JavaScript',
   },
@@ -49,21 +52,29 @@ const tasks = [
     task: 'Do at least one project with Typescript!',
     time: Date.now(),
     archived: false,
-    completed: false,
+    completed: true,
     space: 'TypeScript',
   },
   {
     id: 0,
     task: 'Complete the of the JS course by Sep ending',
     time: Date.now(),
-    archived: false,
-    completed: false,
+    archived: true,
+    completed: true,
     space: 'JavaScript',
   },
   {
     id: 0,
     task: 'Do at least one project with Typescript!',
     time: Date.now(),
+    archived: true,
+    completed: false,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript!',
+    time: Date.now(),
     archived: false,
     completed: false,
     space: 'TypeScript',
@@ -78,9 +89,17 @@ const tasks = [
   },
   {
     id: 0,
-    task: 'Complete the of the JS course by Sep ending',
+    task: 'Do at least one project with Typescript!',
     time: Date.now(),
     archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Complete the of the JS course by Sep ending',
+    time: Date.now(),
+    archived: true,
     completed: false,
     space: 'JavaScript',
   },
@@ -182,7 +201,6 @@ const renderTasks = function () {
     const selectedTitle = selected.querySelector('.item--name').textContent;
     return item.space === selectedTitle;
   });
-  console.log(selTasksTitle);
 
   // Render Selected task content on UI
   taskList.innerHTML = '';
@@ -205,11 +223,36 @@ const renderTasks = function () {
   });
 };
 
+// Update nav
+const updateNav = function () {
+  const spaceTitle = selected.querySelector('.item--name');
+  const sList = tasks.filter(item => item.space === spaceTitle.textContent);
+
+  // all - !archived && !completed
+  const allL = sList.filter(item => !item.completed && !item.archived);
+  allNum.textContent = `${allL.length}`;
+
+  // pending
+  const pendingL = sList.filter(item => !item.completed);
+  pendingNum.textContent = `${pendingL.length}`;
+
+  // completed
+  const completedL = sList.filter(item => item.completed);
+  completedNum.textContent = `${completedL.length}`;
+
+  // Archived
+  const archivedL = sList.filter(item => item.archived);
+  archivedNum.textContent = `${archivedL.length}`;
+};
+
+// completed tasks
+
 ////////////////////////////////////////////////////////////
-// LEFT PANE
+// LEFT PANE - EVENTS
 
 buildSpaces();
 renderTasks();
+updateNav();
 
 // Open space form Event
 openSpace.addEventListener('click', function () {
@@ -255,12 +298,23 @@ addSpace.addEventListener('click', function () {
   if (!addSpace.disabled) {
     const newSpace = capitalize(spaceInput.value);
 
-    // Add to spaces
-    spaces.push({ space: newSpace, time: 'date' });
-    console.log(spaces);
-    buildSpaces();
-    renderTasks();
-
+    // check for existing space names
+    const same = spaces.filter(space => space.space === newSpace);
+    const sameL = same.length;
+    console.log(same);
+    if (sameL) {
+      spaces.push({ space: `${newSpace}(${sameL})`, time: 'date' });
+      buildSpaces();
+      renderTasks();
+      updateNav();
+    } else {
+      // Add new space names to spaces
+      spaces.push({ space: newSpace, time: 'date' });
+      console.log(spaces);
+      buildSpaces();
+      renderTasks();
+      updateNav();
+    }
     // clear inputs and close
     closeForm(addSpace, openSpace, formSpace, overlaySpace, 25);
     spaceInput.value = '';
@@ -283,10 +337,11 @@ spacesList.addEventListener('click', function (e) {
 
   // Render Tasks from selected
   renderTasks();
+  updateNav();
 });
 
 ////////////////////////////////////////////////////////////
-// RIGHT PANE
+// RIGHT PANE - EVENTS
 openTask.addEventListener('click', function () {
   openForm(openTask, addTask, formTask, overlayTask, taskInput, 100, taskText);
 });
@@ -335,6 +390,7 @@ addTask.addEventListener('click', function () {
 
     // buildSpaces();
     renderTasks();
+    updateNav();
 
     // clear inputs and close
     closeForm(addTask, openTask, formTask, overlayTask, 100);
@@ -342,6 +398,8 @@ addTask.addEventListener('click', function () {
     taskText.style.color = 'rgb(23, 23, 23, 0.9)';
   }
 });
+
+// CompletedTask Event
 
 ///////////////////////////////////////////////////////////////////////
 // Test code

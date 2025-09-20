@@ -134,3 +134,11 @@ html {
   margin-bottom: 0.5rem;
   color: rgb(23, 23, 23, 0.9);
 }
+
+.strike {
+  text-decoration: line-through;
+}
+
+.full {
+  background-color: var(--color--tertiary);
+}
