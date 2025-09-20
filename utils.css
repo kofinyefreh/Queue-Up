@@ -84,9 +84,11 @@ html {
 /* --------------------------------------------------- */
 /* Reuseable Styles  */
 .selected {
-  /* background-color: rgba(22, 130, 230, 0.1); */
   background-color: var(--color-secondary);
   font-weight: 550;
+}
+.selected-tab {
+  background-color: var(--color-secondary);
 }
 
 .btn {

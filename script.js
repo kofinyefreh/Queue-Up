@@ -22,7 +22,9 @@ const formTask = document.querySelector('.form--task');
 const spaceTitle = document.querySelector('.space-title');
 const [allNum, pendingNum, completedNum, archivedNum] =
   document.querySelectorAll('.tab-num');
-const [all, pending, completed, archived] = document.querySelectorAll('.tab');
+const tabs = document.querySelector('.tabs');
+const [all, pending, completed, archived] =
+  document.querySelectorAll('.tab-name');
 
 // Data Structure
 const spaces = [
@@ -44,56 +46,16 @@ const tasks = [
     task: 'Complete the of the JS course by Sep ending ',
     time: Date.now(),
     archived: true,
-    completed: false,
-    space: 'JavaScript',
-  },
-  {
-    id: 0,
-    task: 'Do at least one project with Typescript!',
-    time: Date.now(),
-    archived: false,
     completed: true,
-    space: 'TypeScript',
+    space: 'JavaScript',
   },
   {
     id: 0,
     task: 'Complete the of the JS course by Sep ending',
     time: Date.now(),
-    archived: true,
-    completed: true,
+    archived: false,
+    completed: false,
     space: 'JavaScript',
-  },
-  {
-    id: 0,
-    task: 'Do at least one project with Typescript!',
-    time: Date.now(),
-    archived: true,
-    completed: false,
-    space: 'TypeScript',
-  },
-  {
-    id: 0,
-    task: 'Do at least one project with Typescript!',
-    time: Date.now(),
-    archived: false,
-    completed: false,
-    space: 'TypeScript',
-  },
-  {
-    id: 0,
-    task: 'Do at least one project with Typescript!',
-    time: Date.now(),
-    archived: false,
-    completed: false,
-    space: 'TypeScript',
-  },
-  {
-    id: 0,
-    task: 'Do at least one project with Typescript!',
-    time: Date.now(),
-    archived: false,
-    completed: true,
-    space: 'TypeScript',
   },
   {
     id: 0,
@@ -102,11 +64,52 @@ const tasks = [
     archived: true,
     completed: false,
     space: 'JavaScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 1',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 2',
+    time: Date.now(),
+    archived: true,
+    completed: false,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 3',
+    time: Date.now(),
+    archived: false,
+    completed: false,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 4',
+    time: Date.now(),
+    archived: false,
+    completed: false,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
   },
 ];
 
 // State Variables
 let selected;
+let selectedTab;
 
 ////////////////////////////////////////////////////////////
 // General Functions
@@ -176,7 +179,7 @@ const buildSpaces = function () {
     li.innerHTML = `
       <div>
         <p class="item--name">${space.space}</p>
-        <p class="last--opened">${'date'}</p>
+        <p class="last--opened">19/ 9/ 2025</p>
         </div>
         <span class="item--nums">${arrList.length}</span>
     `;
@@ -186,6 +189,35 @@ const buildSpaces = function () {
       ? (li.classList = `space--item item--${index} selected`)
       : (li.className = `space--item item--${index}`);
     spacesList.appendChild(li);
+  });
+};
+
+// Update Space Count Space
+const updateSpaceCount = function () {};
+
+// build Tasks
+const buildTasks = function (arr) {
+  taskList.innerHTML = '';
+  arr.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+                <div>
+                    <span class="left">
+                      <div class="circle done"></div>
+                      <p class="task-name">
+                        ${item.task}
+                      </p></span
+                    >
+                    <p class="date">19/9/2025</p>
+                  </div>
+                  <div class="right">
+                    <div class="circle edit"></div>
+                    <div class="circle archive"></div>
+                    <div class="circle delete"></div>
+                  </div>
+    `;
+    li.classList.add('task', `task--${index}`);
+    taskList.appendChild(li);
   });
 };
 
@@ -202,25 +234,27 @@ const renderTasks = function () {
     return item.space === selectedTitle;
   });
 
-  // Render Selected task content on UI
-  taskList.innerHTML = '';
-  selTasksTitle.forEach((item, index) => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-                  <div class="left">
-                    <div class="circle done"></div>
-                    <p class="task-name">${item.task}</p>
-                  </div>
-                  <div class="right">
-                    <p class="date">07-08-2025</p>
-                    <div class="circle edit"></div>
-                    <div class="circle archive"></div>
-                    <div class="circle delete"></div>
-                  </div>
-    `;
-    li.classList.add('task', `task--${index}`);
-    taskList.appendChild(li);
-  });
+  let arr;
+  // Render Selected task content based on selected tab
+  if (selectedTab) {
+    let selTabName = selectedTab.querySelector('.tab-name').textContent;
+
+    if (selTabName === 'All')
+      arr = selTasksTitle.filter(item => !item.completed && !item.archived);
+    if (selTabName === 'Pending')
+      arr = selTasksTitle.filter(
+        item => !item.completed || (item.archived && !item.completed)
+      );
+    if (selTabName === 'Completed')
+      arr = selTasksTitle.filter(item => item.completed);
+    if (selTabName === 'Archived')
+      arr = selTasksTitle.filter(item => item.archived);
+
+    buildTasks(arr);
+  } else {
+    arr = selTasksTitle.filter(item => !item.completed && !item.archived);
+    buildTasks(arr);
+  }
 };
 
 // Update nav
@@ -233,7 +267,9 @@ const updateNav = function () {
   allNum.textContent = `${allL.length}`;
 
   // pending
-  const pendingL = sList.filter(item => !item.completed);
+  const pendingL = sList.filter(
+    item => !item.completed || (item.archived && !item.completed)
+  );
   pendingNum.textContent = `${pendingL.length}`;
 
   // completed
@@ -244,8 +280,6 @@ const updateNav = function () {
   const archivedL = sList.filter(item => item.archived);
   archivedNum.textContent = `${archivedL.length}`;
 };
-
-// completed tasks
 
 ////////////////////////////////////////////////////////////
 // LEFT PANE - EVENTS
@@ -322,7 +356,7 @@ addSpace.addEventListener('click', function () {
   }
 });
 
-// Select item event
+// Select space event
 spacesList.addEventListener('click', function (e) {
   if (!e.target.closest('.space--item').classList.contains('space--item'))
     return;
@@ -399,7 +433,34 @@ addTask.addEventListener('click', function () {
   }
 });
 
-// CompletedTask Event
+// Select tab Event
+tabs.addEventListener('click', function (e) {
+  // Remove all current selected state
+  const tab = document.querySelectorAll('.tab');
+  tab.forEach(tab => tab.classList.remove('selected-tab'));
+
+  // Add background to selected
+  e.target.closest('.tab').classList.add('selected-tab');
+  selectedTab = e.target.closest('.tab');
+
+  // update tasks ui on-click
+  const val = selectedTab.querySelector('.tab-name').textContent;
+
+  let arr;
+  const a = selected.querySelector('.item--name').textContent;
+  const selTasksTitle = tasks.filter(item => item.space === a);
+
+  if (val === 'All')
+    arr = selTasksTitle.filter(item => !item.completed && !item.archived);
+  if (val === 'Pending')
+    arr = selTasksTitle.filter(
+      item => !item.completed || (item.archived && !item.completed)
+    );
+  if (val === 'Completed') arr = selTasksTitle.filter(item => item.completed);
+  if (val === 'Archived') arr = selTasksTitle.filter(item => item.archived);
+
+  buildTasks(arr);
+});
 
 ///////////////////////////////////////////////////////////////////////
 // Test code
