@@ -181,7 +181,7 @@ const buildSpaces = function () {
         <p class="item--name">${space.space}</p>
         <p class="last--opened">19/ 9/ 2025</p>
         </div>
-        <span class="item--nums">${arrList.length}</span>
+        <span class="item--num">${arrList.length}</span>
     `;
 
     // Rendering actual spaces
@@ -189,11 +189,20 @@ const buildSpaces = function () {
       ? (li.classList = `space--item item--${index} selected`)
       : (li.className = `space--item item--${index}`);
     spacesList.appendChild(li);
+    updateSpaceCount();
   });
 };
 
 // Update Space Count Space
-const updateSpaceCount = function () {};
+const updateSpaceCount = function () {
+  if (selected) {
+    const selSpace = selected.querySelector('.item--name').textContent;
+    const selNum = selected.querySelector('.item--num');
+
+    const i = tasks.filter(item => item.space === selSpace);
+    selNum.textContent = i.length;
+  }
+};
 
 // build Tasks
 const buildTasks = function (arr) {
@@ -216,7 +225,7 @@ const buildTasks = function (arr) {
                     <div class="circle delete"></div>
                   </div>
     `;
-    li.classList.add('task', `task--${index}`);
+    li.classList.add('task', `${index}`);
     taskList.appendChild(li);
   });
 };
@@ -430,6 +439,8 @@ addTask.addEventListener('click', function () {
     closeForm(addTask, openTask, formTask, overlayTask, 100);
     taskInput.value = '';
     taskText.style.color = 'rgb(23, 23, 23, 0.9)';
+
+    updateSpaceCount();
   }
 });
 
@@ -460,6 +471,27 @@ tabs.addEventListener('click', function (e) {
   if (val === 'Archived') arr = selTasksTitle.filter(item => item.archived);
 
   buildTasks(arr);
+});
+
+//////////////////////////////
+// Individual Task Events
+
+// 01. Mark task completed
+taskList.addEventListener('click', function (e) {
+  // get selected array
+  const selTitle = selected.querySelector('.item--name').textContent;
+  const spaceL = tasks.filter(item => item.space === selTitle);
+  console.log(spaceL);
+
+  // get task clicked
+  const task = e.target.closest('.task');
+  console.log(task);
+
+  if (
+    e.target.classList.contains('done') ||
+    e.target.classList.contains('task-name')
+  ) {
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////
