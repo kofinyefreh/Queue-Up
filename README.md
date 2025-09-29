@@ -1,4 +1,4 @@
-# Todo Application: A Different Syle all Together
+# Todo Application: A Different Style all Together
 
 ## To use the application, follow the following steps below
 

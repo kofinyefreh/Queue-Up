@@ -343,26 +343,19 @@ addSpace.addEventListener('click', function () {
 
     // check for existing space names
     const same = spaces.filter(space => space.space === newSpace);
-    const sameL = same.length;
-    console.log(same);
-    if (sameL) {
-      spaces.push({ space: `${newSpace}(${sameL})`, time: 'date' });
-      buildSpaces();
-      renderTasks();
-      updateNav();
-    } else {
-      // Add new space names to spaces
-      spaces.push({ space: newSpace, time: 'date' });
-      console.log(spaces);
-      buildSpaces();
-      renderTasks();
-      updateNav();
-    }
-    // clear inputs and close
-    closeForm(addSpace, openSpace, formSpace, overlaySpace, 25);
-    spaceInput.value = '';
-    spaceText.style.color = 'rgb(23, 23, 23, 0.9)';
+    if (same.length) return;
+
+    // Add new space names to spaces
+    spaces.push({ space: newSpace, time: 'date' });
+    console.log(spaces);
+    buildSpaces();
+    renderTasks();
+    updateNav();
   }
+  // clear inputs and close
+  closeForm(addSpace, openSpace, formSpace, overlaySpace, 25);
+  spaceInput.value = '';
+  spaceText.style.color = 'rgb(23, 23, 23, 0.9)';
 });
 
 // Select space event
@@ -420,6 +413,12 @@ addTask.addEventListener('click', function () {
     // const newSpace = capitalize(spaceInput.value);
     const spaceName = selected.querySelector('.item--name');
     console.log(spaceName.textContent);
+
+    const check = tasks
+      .filter(task => task.space === spaceName.textContent)
+      .filter(task => task.task === taskInput.value);
+
+    if (check.length) return;
 
     // Add to spaces
     tasks.unshift({
@@ -484,14 +483,8 @@ taskList.addEventListener('click', function (e) {
   console.log(spaceL);
 
   // get task clicked
-  const task = e.target.closest('.task');
+  const task = e.target.closest('.left');
   console.log(task);
-
-  if (
-    e.target.classList.contains('done') ||
-    e.target.classList.contains('task-name')
-  ) {
-  }
 });
 
 ///////////////////////////////////////////////////////////////////////
