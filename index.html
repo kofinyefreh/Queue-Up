@@ -19,12 +19,14 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/utils.css" />
+
+    <script src="js/controllers/appController.js" type="module" defer></script>
+
     <title>
       Queue Up | Become more productive by knowing the tasks ahead of you!
     </title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="utils.css" />
-    <script src="script.js" defer></script>
   </head>
 
   <body>
@@ -32,68 +34,76 @@
       <div class="section">
         <!-- left pane -->
         <section class="left--pane">
-          <div class="pad">
-            <h1 class="app--title"><span>Q</span>ueue Up</h1>
-            <div class="overlay hidden"></div>
+          <div class="left--top">
+            <h2 class="spaces--title">Spaces List</h2>
+            <!-- <span
+              >Accent <i class="fa-solid fa-droplet" title="Theme"></i
+            ></span> -->
+          </div>
+
+          <div class="container">
             <div class="display--spaces">
               <ul class="spaces--list">
                 <li class="space--item selected">
                   <div>
                     <p class="item--name">Home Chores</p>
-                    <p class="last--opened">09-11-2025</p>
                   </div>
                   <span class="item--nums">10</span>
                 </li>
                 <li class="">
                   <div>
-                    <p class="item--name">School Assingments</p>
-                    <p class="last--opened">09-11-2025</p>
+                    <p class="space--name">School Assingments</p>
                   </div>
-                  <span class="item--nums">9</span>
+                  <span class="space--nums">9</span>
                 </li>
                 <li class="space--item">
                   <div>
-                    <p class="item--name">Church</p>
+                    <p class="space--name">Church</p>
                     <p class="last--opened">09-11-2025</p>
                   </div>
-                  <span class="item--nums">7</span>
+                  <span class="space--nums">7</span>
                 </li>
               </ul>
             </div>
+            <div class="overlay hidden"></div>
+          </div>
 
-            <!-- Form to input space -->
-            <div class="bottom--part">
-              <div class="form--space hidden">
-                <form action="#">
-                  <p class="space-text check--input">Not more than 25 chars</p>
-                  <input
-                    type="text"
-                    placeholder="Create Space"
-                    class="space--input"
-                  />
-                </form>
+          <!-- Form to input space -->
+          <div class="form--space">
+            <form action="#">
+              <div class="form hidden">
+                <p class="space-text check--input">Not more than 25 chars</p>
+                <input
+                  type="text"
+                  placeholder="Create Space"
+                  class="space--input"
+                />
               </div>
 
-              <button class="btn btn--1 open--space">+</button>
-              <button class="btn btn--1 add--space hidden">
-                <i class="fa-solid fa-check tick"></i>
-              </button>
-            </div>
+              <div class="buttons">
+                <button class="btn btn--1 open--space">+</button>
+                <button type="submit" class="btn btn--1 add--space hidden">
+                  <i class="fa-solid fa-check tick"></i>
+                </button>
+              </div>
+            </form>
           </div>
         </section>
 
+        <!-- ------------------------------------------------------------------------------------ -->
+        <!-- Right Section of App -->
         <section class="right--pane">
           <nav class="nav-bar">
             <p class="title">
               #
-              <span contenteditable="true" class="space-title">JavaScript</span>
+              <span contenteditable="true" class="space-title"></span>
             </p>
 
             <div class="navigation">
               <ul class="tabs">
                 <li class="tab selected-tab">
                   <p class="tab-name">All</p>
-                  <span class="tab-num">0</span>
+                  <span class="tab--num">0</span>
                 </li>
                 <li class="tab">
                   <p class="tab-name">Pending</p>
@@ -108,41 +118,35 @@
                   <span class="tab-num">0</span>
                 </li>
               </ul>
-              <button class="btn btn--2 open--task">+</button>
-              <button class="btn btn--2 add--task hidden">
-                <i class="fa-solid fa-check tick"></i>
-              </button>
+
+              <div>
+                <form action="#">
+                  <div class="form--task hidden">
+                    <p class="task-text check--input">Not more than 25 chars</p>
+                    <input
+                      type="text"
+                      placeholder="Create Queue"
+                      class="task--input"
+                    />
+                  </div>
+
+                  <div class="buttons">
+                    <button class="btn btn--2 open--task">+</button>
+                    <button type="submit" class="btn btn--2 add--task hidden">
+                      <i class="fa-solid fa-check tick"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </nav>
 
           <div class="display--tasks">
             <!-- input-task form -->
-            <div class="form--task hidden">
-              <form action="#">
-                <p class="task-text check--input">Not more than 100 chars</p>
-                <input
-                  type="text"
-                  placeholder="Create Task"
-                  class="task--input"
-                />
-              </form>
-            </div>
 
-            <div class="overlay-task hidden"></div>
+            <div class="overlay hidden"></div>
             <div>
               <ul class="task-list">
-                <!-- <li class="task">
-                  <div class="left">
-                    <div class="circle done"></div>
-                    <p class="task-name">Do all my tasks</p>
-                  </div>
-                  <div class="right">
-                    <p class="date">07-08-2025</p>
-                    <div class="circle edit"></div>
-                    <div class="circle archive"></div>
-                    <div class="circle delete"></div>
-                  </div>
-                </li> -->
                 <li class="task">
                   <div>
                     <span class="left">
@@ -152,7 +156,10 @@
                         elit. Corrupti odit adipisci
                       </p>
                     </span>
-                    <p class="date">07-08-2025</p>
+                    <div class="task--details">
+                      <p class="date">07-08-2025</p>
+                      <p class="edited">Edited</p>
+                    </div>
                   </div>
                   <div class="right">
                     <div class="circle edit"></div>
@@ -160,6 +167,7 @@
                     <div class="circle delete"></div>
                   </div>
                 </li>
+
                 <li class="task">
                   <div>
                     <span class="left">
@@ -167,9 +175,12 @@
                       <p class="task-name">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         elit. Corrupti odit adipisci
-                      </p></span
-                    >
-                    <p class="date">07-08-2025</p>
+                      </p>
+                    </span>
+                    <div class="task--details">
+                      <p class="date">07-08-2025</p>
+                      <p class="edited">Edited</p>
+                    </div>
                   </div>
                   <div class="right">
                     <div class="circle edit"></div>

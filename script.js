@@ -30,6 +30,22 @@ const [all, pending, completed, archived] =
 const spaces = [
   { space: 'JavaScript', time: Date.now() },
   { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
+  { space: 'TypeScript', time: Date.now() },
 ];
 
 const tasks = [
@@ -95,6 +111,134 @@ const tasks = [
     time: Date.now(),
     archived: false,
     completed: false,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
+    space: 'TypeScript',
+  },
+  {
+    id: 0,
+    task: 'Do at least one project with Typescript! 5',
+    time: Date.now(),
+    archived: false,
+    completed: true,
     space: 'TypeScript',
   },
   {
@@ -178,10 +322,10 @@ const buildSpaces = function () {
     const li = document.createElement('li');
     li.innerHTML = `
       <div>
-        <p class="item--name">${space.space}</p>
+        <p class="space--name">${space.space}</p>
         <p class="last--opened">19/ 9/ 2025</p>
         </div>
-        <span class="item--num">${arrList.length}</span>
+        <span class="space--num">${arrList.length}</span>
     `;
 
     // Rendering actual spaces

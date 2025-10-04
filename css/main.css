@@ -1,8 +1,12 @@
 /* General Reset and General Format */
 :root {
-  --color-primary: #171717;
-  --color-secondary: #f5f5f5;
+  /* --color-base: #171717;
+  --color-second: #f5f5f5;
   --color--tertiary: #737373;
+  --color--accent: rgb(175, 117, 8); */
+  --color-base: #171717;
+  --color-second: #f5f5f5;
+  --color--accent: #737373;
 }
 
 * {
@@ -25,10 +29,10 @@ main {
 }
 
 .section {
-  width: 110rem;
-  height: 65rem;
+  width: 120rem;
+  /* height: 55rem; */
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 1fr 3fr;
   box-shadow: 0px 0px 5px rgb(115, 115, 115, 0.4);
   border-radius: 10px;
   overflow: hidden;
@@ -37,38 +41,47 @@ main {
 /* ------------------------------------------------------- */
 /* Left pane styling */
 .left--pane {
+  padding: 2rem 2rem;
   font-weight: 400;
-  font-size: 2rem;
   position: relative;
-  box-shadow: 0px 0px 5px var(--color-secondary);
+  box-shadow: 0px 0px 5px var(--color-second);
   box-shadow: inset;
 }
 
-.pad {
-  padding: 2rem;
-  padding-right: 0rem;
+.left--top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0rem;
 }
 
-.app--title {
-  font-family: 'PT serif';
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 3rem;
-  color: var(--color-primary);
+.spaces--title {
+  padding: 0 1rem;
+  font-size: 2rem;
+  font-weight: 450;
+  color: var(--color--accent);
 }
 
-.app--title span {
-  font-family: 'PT serif';
-  font-size: 5rem;
+.left--top span {
+  font-size: 1.2rem;
+  padding-right: 2rem;
+  color: white;
+  cursor: pointer;
+  border: 2px solid var(--color--accent);
+  background-color: var(--color--accent);
+  padding: 0.4rem;
+  border-radius: 5px;
 }
 
 .display--spaces {
+  position: relative;
   font-weight: 450;
-  padding: 0rem 0.6rem;
-  height: 50rem;
+  height: 56rem;
   overflow-y: auto;
-  scrollbar-color: var(--color--secondary) #fff;
+  scrollbar-width: thin;
+  scrollbar-color: #737373 white;
   color: rgb(23, 23, 23, 0.8);
+  padding-bottom: 5rem;
 }
 
 .spaces--list {
@@ -83,24 +96,26 @@ main {
   align-items: center;
   list-style: none;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 1rem 2rem;
   transition: all 0.3s;
 }
+
 .space--item:hover {
-  background-color: var(--color-secondary);
-  border-radius: 10px;
+  background-color: var(--color-second);
+  border-radius: 5px;
 }
 
-.item--name {
-  font-size: 1.7rem;
+.space--name {
+  font-size: 1.4rem;
+  font-weight: 400;
 }
 
-.item--num {
+.space--num {
   font-size: 1.4rem;
   padding: 0.5rem;
   border-radius: 100px;
-  font-weight: 400;
+  color: var(--color--accent);
 }
 
 .space--item div {
@@ -112,12 +127,37 @@ main {
 
 .last--opened {
   font-size: 1rem;
-  color: var(--color--tertiary);
+  color: var(--color--accent);
   font-weight: 400;
+}
+
+/* Form-task Styling */
+.form--space {
+  position: absolute;
+  bottom: 4rem;
+  right: 0.2rem;
+  display: block;
+  width: 22rem;
+  margin: 0rem 4rem;
+}
+
+.form--space input {
+  width: 100%;
+  border: none;
+  box-shadow: 0px 0px 5px var(--color-base);
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  padding: 1rem 1rem;
+  margin-bottom: 3rem;
+  border-radius: 5px;
+  outline: none;
 }
 
 /* ------------------------------------------------------- */
 /* Right pane styling */
+.right--pane {
+  position: relative;
+}
 
 /* nav styling */
 .nav-bar {
@@ -125,8 +165,8 @@ main {
   justify-content: space-between;
   align-items: center;
   box-shadow: inset;
-  padding: 2rem;
-  padding-top: 4rem;
+  margin: 2rem 2rem;
+  margin-top: 2.7rem;
 }
 
 .title,
@@ -134,7 +174,7 @@ main {
 .space-title span {
   font-size: 2rem;
   outline: none;
-  color: var(--color--tertiary);
+  color: var(--color--accent);
 }
 
 .navigation {
@@ -146,22 +186,22 @@ main {
   display: flex;
   align-items: center;
   gap: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 .tab {
   list-style: none;
-  padding: 0.5rem 1rem;
-  box-shadow: 0px 0px 2px var(--color--tertiary);
+  padding: 0.4rem 0.8rem;
+  box-shadow: 0px 0px 2px var(--color--accent);
   border-radius: 100px;
-  color: var(--color--tertiary);
+  color: var(--color--accent);
   cursor: pointer;
   position: relative;
   transition: all 0.3s;
 }
 
 .tab:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-second);
 }
 
 .tab span {
@@ -188,7 +228,7 @@ main {
 }
 
 .btn.btn--2 {
-  box-shadow: 0px 0px 4px var(--color--tertiary);
+  box-shadow: 0px 0px 4px var(--color--accent);
 }
 
 /* tasks styling */
@@ -198,10 +238,11 @@ main {
 
 .task-list {
   padding: 0.5rem 0rem;
-  height: 53rem;
+  height: 56.5rem;
   border-top: 1px solid rgb(23, 23, 23, 0.05);
   overflow-y: auto;
-  scrollbar-color: var(--color--secondary) #fff;
+  scrollbar-color: var(--color--second) #fff;
+  scrollbar-width: thin;
 }
 
 .task {
@@ -209,16 +250,15 @@ main {
   display: flex;
   flex: 0 0 50rem;
   justify-content: space-between;
-  /* align-items: center; */
   flex-grow: 0;
   padding: 1.8rem 2rem;
-  color: var(--color--primary);
+  color: var(--color--base);
   cursor: default;
 }
 
 .task-name {
-  font-size: 1.6rem;
-  width: 60rem;
+  font-size: 1.5rem;
+  width: 75rem;
   overflow-wrap: break-word;
 }
 
@@ -238,12 +278,26 @@ main {
   margin-top: 0.5rem;
 }
 
-.date {
+.task--details {
+  color: var(--color--accent);
   font-size: 1.2rem;
-  color: var(--color--tertiary);
-  font-weight: 400;
   padding-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.date {
+  font-weight: 400;
   margin-left: 2.4rem;
+}
+
+.edited {
+  font-size: 1rem;
+  color: #fff;
+  background-color: var(--color--accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
 }
 
 /* Circle styles */
@@ -269,8 +323,8 @@ main {
 }
 
 .archive:hover {
-  background-color: var(--color--tertiary);
-  border-color: var(--color--tertiary);
+  background-color: var(--color--accent);
+  border-color: var(--color--accent);
 }
 
 .delete:hover {
@@ -286,9 +340,66 @@ main {
 }
 
 .done:hover {
-  background-color: var(--color--tertiary);
-  border-color: var(--color--tertiary);
+  background-color: var(--color--accent);
+  border-color: var(--color--accent);
   transform: scale(1);
   width: 1.5rem;
   height: 1.5rem;
+}
+
+/* Form-task Styling */
+.form--task {
+  position: absolute;
+  z-index: 100;
+  top: 10rem;
+  right: 10rem;
+}
+
+.form--task input {
+  width: 70rem;
+  border: none;
+  box-shadow: 0px 0px 5px var(--color-base);
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Globals */
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  /* padding-right: 2rem; */
+}
+
+.btn {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color--second);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px var(--color-base);
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  background: none;
+  backdrop-filter: blur(2.5px);
+}
+
+.overlay {
+  backdrop-filter: blur(2.5px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.container {
+  position: relative;
 }
