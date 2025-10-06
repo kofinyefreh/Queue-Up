@@ -70,11 +70,10 @@ export function renderAddedSpaces(spaces, tasks) {
     spacesList.appendChild(li);
     li.scrollIntoView(/*{ behavior: 'smooth' }*/);
     li.setAttribute('data-space', space.space);
-    // console.log(li.dataset.space);
   });
 }
 
-// Event bindings (Controller attaches handlers here)
+// Events
 export function onOpenForm(handler) {
   openFormBtn.addEventListener('click', handler);
 }

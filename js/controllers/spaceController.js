@@ -43,7 +43,7 @@ const addNewSpace = function () {
     return;
   }
 
-  // updateSpaces();
+  // updateSpaces
   addSpaceView.renderAddedSpaces(success, model.state.tasks);
 
   // ******************8 taskView **********************
@@ -51,17 +51,16 @@ const addNewSpace = function () {
 
   addSpaceView.clearInput();
   addSpaceView.closeForm();
-  tabView.showSpaceTitle(model.state.selectedSpace);
+  tabView.showSpaceTitle(model.state.selectedSpace.displaySelected);
 };
 
 // Select Space
 const selectSpaceController = function (clicked) {
   selectSpaceView.updateSelection(clicked);
   spaceModel.setSelectedSpace(clicked);
-  tabView.showSpaceTitle(model.state.selectedSpace);
+  tabView.showSpaceTitle(model.state.selectedSpace.displaySelected);
 
   // ******************8 taskView **********************
-  // console.log(taskModel.getSelectedTasks());
   taskView.renderTasks(taskModel.getSelectedTasks());
 };
 

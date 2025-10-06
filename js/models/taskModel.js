@@ -4,9 +4,8 @@ console.log('nice one');
 ///////////////////////////////////////////////////////////////////
 // Add tasks
 export function addNewTask(newTask) {
-  // if (!model.state.spaces.length) return alert('create spaces first');
   const selectedArray = model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace
+    item => item.space === model.state.selectedSpace.selectSpace
   );
   const exists = selectedArray.some(task => task.taskName === newTask);
   if (exists) return false;
@@ -16,9 +15,9 @@ export function addNewTask(newTask) {
     taskName: newTask,
     time: new Date(),
     archived: false,
-    completed: true,
-    space: model.state.selectedSpace.toLowerCase(),
-    edited: true,
+    completed: false,
+    space: model.state.selectedSpace.selectSpace.toLowerCase(),
+    edited: false,
   });
 
   return model.state.tasks;
@@ -28,49 +27,40 @@ export function addNewTask(newTask) {
 // Get Selected Tasks
 export function getSelectedTasks() {
   return model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace
+    item => item.space === model.state.selectedSpace.selectSpace
   );
 }
 
 ///////////////////////////////////////////////////////////////////
 // Edit Space Name
-export function editeSpaceName(newName) {
+export function editeSpaceNameList(newName) {
+  if (newName.length > 25 || newName.length === 0) {
+    alert(`"${newName}" is too long!`);
+    return;
+  }
   const spacesArray = model.state.spaces.find(
-    item => item.space === model.state.selectedSpace
+    item => item.space === model.state.selectedSpace.selectSpace
   );
   const tasksArray = model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace
+    item => item.space === model.state.selectedSpace.selectSpace
   );
 
   spacesArray.space = newName.toLowerCase();
   tasksArray.forEach(task => (task.space = newName.toLowerCase()));
-  model.state.selectedSpace = newName.toLowerCase();
+  model.state.selectedSpace.selectSpace = newName.toLowerCase();
 }
 
 ///////////////////////////////////////////////////////////////////
 // Task Actions
-// export function completeTask(taskName) {
-//   const activeTask = model.state.tasks.filter(
-//     item =>
-//       item.taskName === taskName && item.space === model.state.selectedSpace
-//   );
-//   activeTask.completed = true;
-// }
-
-// export function archivedTask(taskName) {
-//   const activeTask = model.state.tasks.filter(
-//     item =>
-//       item.taskName === taskName && item.space === model.state.selectedSpace
-//   );
-//   activeTask.archived = true;
-// }
 
 export function activateTaskProperty(taskName, property) {
-  const activeTask = model.state.tasks.filter(
+  const activeTask = model.state.tasks.find(
     item =>
       item.taskName === taskName && item.space === model.state.selectedSpace
   );
-  activeTask[property] = true;
+
+  if (activeTask) activeTask[property] = !activeTask[property];
+  return activeTask;
 }
 
 ///////////////////////////////////////////////////////////////////

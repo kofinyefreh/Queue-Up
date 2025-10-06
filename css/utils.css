@@ -59,5 +59,6 @@ html {
 }
 
 .full {
-  background-color: var(--color--tertiary);
+  background-color: var(--color--accent);
+  border: none;
 }

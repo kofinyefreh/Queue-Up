@@ -8,10 +8,11 @@ export function renderSpaces(spaces, tasks) {
   const selectedSpace = document.querySelector('.selected');
 
   spacesList.innerHTML = '';
-
   spaces.forEach((space, index) => {
     // Count tasks for this space
-    const taskCount = tasks.filter(t => t.space === space.space).length;
+    const taskCount = tasks.filter(
+      t => t.space.toLowerCase() === space.space.toLowerCase()
+    ).length;
 
     const li = document.createElement('li');
     li.className = `space--item item--${index}`;

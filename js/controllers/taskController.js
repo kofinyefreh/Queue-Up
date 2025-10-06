@@ -4,6 +4,7 @@ import * as tasksView from '../views/tasksView.js';
 import * as addTaskView from '../views/addTaskView.js';
 import * as spaceView from '../views/spaceView.js';
 import * as tabView from '../views/tabsView.js';
+import * as taskActionsView from '../views/taskActionsView.js';
 
 // Open Form
 const openForm = function () {
@@ -26,8 +27,6 @@ const validateTypingInput = function (value) {
 
 // Add new task
 const addTask = function () {
-  // if (!model.state.spaces.length) return;
-
   const newTask = addTaskView.getInputValue();
   const { valid } = model.validateInput(newTask, 250);
   if (!valid) return;
@@ -49,15 +48,17 @@ const addTask = function () {
 
 // Edit space name from tasks pane
 const changeSpaceName = function (newName) {
-  taskModel.editeSpaceName(newName);
+  taskModel.editeSpaceNameList(newName);
   tasksView.renderTasks(taskModel.getSelectedTasks());
 
   // ************* space View ***********************
-  console.log(model.state.selectedSpace);
+  console.log(model.state.selectedSpace.displaySelected);
   spaceView.renderSpaces(model.state.spaces, model.state.tasks);
-
-  // console.log(taskModel.getSelectedTasks());
 };
+
+taskActionsView.markAsComplete((taskName, action) => {
+  console.log(taskModel.activateTaskProperty(taskName, action));
+});
 
 export function initTasks() {
   tasksView.renderTasks(taskModel.getSelectedTasks());

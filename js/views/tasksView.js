@@ -27,6 +27,7 @@ export const renderTasks = function (tasks) {
                     <div class="circle delete"></div>
                   </div>
     `;
+
     li.classList.add('task', `${index}`);
     taskList.appendChild(li);
 
