@@ -1,4 +1,5 @@
 import * as model from './model.js';
+import * as help from '../helpers.js';
 console.log('nice one');
 
 ///////////////////////////////////////////////////////////////////
@@ -16,7 +17,7 @@ export function addNewTask(newTask) {
     time: new Date(),
     archived: false,
     completed: false,
-    space: model.state.selectedSpace.selectSpace.toLowerCase(),
+    space: model.state.selectedSpace,
     edited: false,
   });
 
@@ -27,27 +28,28 @@ export function addNewTask(newTask) {
 // Get Selected Tasks
 export function getSelectedTasks() {
   return model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace.selectSpace
+    item => item.space === model.state.selectedSpace
   );
 }
 
 ///////////////////////////////////////////////////////////////////
 // Edit Space Name
 export function editeSpaceNameList(newName) {
-  if (newName.length > 25 || newName.length === 0) {
-    alert(`"${newName}" is too long!`);
+  const trimmed = help.capitalize(newName.trim());
+  if (trimmed.length > 25 || trimmed.length === 0) {
+    alert(`"${trimmed}" is an invalid name!`);
     return;
   }
   const spacesArray = model.state.spaces.find(
-    item => item.space === model.state.selectedSpace.selectSpace
+    item => item.space === model.state.selectedSpace
   );
   const tasksArray = model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace.selectSpace
+    item => item.space === model.state.selectedSpace
   );
 
-  spacesArray.space = newName.toLowerCase();
-  tasksArray.forEach(task => (task.space = newName.toLowerCase()));
-  model.state.selectedSpace.selectSpace = newName.toLowerCase();
+  spacesArray.space = help.capitalize(newName);
+  tasksArray.forEach(task => (task.space = trimmed));
+  model.state.selectedSpace = trimmed;
 }
 
 ///////////////////////////////////////////////////////////////////

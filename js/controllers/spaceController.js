@@ -51,14 +51,14 @@ const addNewSpace = function () {
 
   addSpaceView.clearInput();
   addSpaceView.closeForm();
-  tabView.showSpaceTitle(model.state.selectedSpace.displaySelected);
+  tabView.showSpaceTitle(model.state.selectedSpace);
 };
 
 // Select Space
 const selectSpaceController = function (clicked) {
   selectSpaceView.updateSelection(clicked);
   spaceModel.setSelectedSpace(clicked);
-  tabView.showSpaceTitle(model.state.selectedSpace.displaySelected);
+  tabView.showSpaceTitle(model.state.selectedSpace);
 
   // ******************8 taskView **********************
   taskView.renderTasks(taskModel.getSelectedTasks());

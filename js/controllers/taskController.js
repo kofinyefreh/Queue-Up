@@ -52,7 +52,6 @@ const changeSpaceName = function (newName) {
   tasksView.renderTasks(taskModel.getSelectedTasks());
 
   // ************* space View ***********************
-  console.log(model.state.selectedSpace.displaySelected);
   spaceView.renderSpaces(model.state.spaces, model.state.tasks);
 };
 
