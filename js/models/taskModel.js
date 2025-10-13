@@ -6,7 +6,7 @@ console.log('nice one');
 // Add tasks
 export function addNewTask(newTask) {
   const selectedArray = model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace.selectSpace
+    item => item.space === model.state.selectedSpace
   );
   const exists = selectedArray.some(task => task.taskName === newTask);
   if (exists) return false;
@@ -21,6 +21,7 @@ export function addNewTask(newTask) {
     edited: false,
   });
 
+  model.state.selectedTab = 'all';
   return model.state.tasks;
 }
 
@@ -53,6 +54,45 @@ export function editeSpaceNameList(newName) {
 }
 
 ///////////////////////////////////////////////////////////////////
+// Select task tab
+export function activeTab(selecedTab) {
+  model.state.selectedTab = selecedTab;
+}
+
+///////////////////////////////////////////////////////////////////
+// Get selected Item = 'all' default
+export function getAllTasks() {
+  const selectedArray = getSelectedTasks();
+  const allList = selectedArray.filter(
+    item => !item.completed && !item.archived
+  );
+  return allList;
+}
+
+// Get pending task
+export function getPendingTasks() {
+  const selectedArray = getSelectedTasks();
+  const pendingList = selectedArray.filter(
+    item => !item.completed || (item.archived && !item.completed)
+  );
+  return pendingList;
+}
+
+// Get completed Task
+export function getCompletedTasks() {
+  const selectedArray = getSelectedTasks();
+  const completedList = selectedArray.filter(item => item.completed);
+  return completedList;
+}
+
+// Get Archived Task
+export function getArchivedTasks() {
+  const selectedArray = getSelectedTasks();
+  const archivedList = selectedArray.filter(item => item.archived);
+  return archivedList;
+}
+
+///////////////////////////////////////////////////////////////////
 // Task Actions
 
 export function activateTaskProperty(taskName, property) {
@@ -63,31 +103,4 @@ export function activateTaskProperty(taskName, property) {
 
   if (activeTask) activeTask[property] = !activeTask[property];
   return activeTask;
-}
-
-///////////////////////////////////////////////////////////////////
-// Get selected Item = 'all' default
-export function getAllTasks(arr) {
-  const list = arr.filter(item => !item.completed && !item.archived);
-  return { list, listNum: list.length };
-}
-
-// Get pending task
-export function getPendingTasks(arr) {
-  const list = arr.filter(
-    item => !item.completed || (item.archived && !item.completed)
-  );
-  return { list, listNum: list.length };
-}
-
-// Get completed Task
-export function getCompletedTasks(arr) {
-  const list = arr.filter(item => item.completed);
-  return { list, listNum: list.length };
-}
-
-// Get Archived Task
-export function getArchivedTasks(arr) {
-  const list = arr.filter(item => item.archived);
-  return { list, listNum: list.length };
 }

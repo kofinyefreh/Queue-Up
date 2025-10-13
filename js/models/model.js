@@ -2,6 +2,7 @@ console.log('Model.js');
 
 export const state = {
   selectedSpace: null,
+  selectedTab: 'all',
   spaces: [],
   tasks: [],
 };

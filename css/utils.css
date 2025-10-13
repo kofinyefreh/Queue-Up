@@ -1,7 +1,7 @@
 :root {
   --color-base: #171717;
   --color-second: #f5f5f5;
-  --color--accent: oklch(55.6% 0 0);
+  --color-accent: oklch(55.6% 0 0);
 }
 
 /* General Reset and General Format */
@@ -19,9 +19,9 @@ html {
 /* --------------------------------------------------- */
 /* Utility Classes */
 
-/* .selected-tab {
-  background-color: var(--color-secondary);
-} */
+.selected-tab {
+  background-color: var(--color-second);
+}
 
 .selected {
   background-color: var(--color-second);

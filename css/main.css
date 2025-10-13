@@ -63,12 +63,12 @@ main {
 }
 
 .left--top span {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   padding-right: 2rem;
-  color: white;
+  color: var(--color--accent);
   cursor: pointer;
-  border: 2px solid var(--color--accent);
-  background-color: var(--color--accent);
+  /* border: 2px solid var(--color--accent); */
+  /* background-color: var(--color--accent); */
   padding: 0.4rem;
   border-radius: 5px;
 }
@@ -351,7 +351,7 @@ main {
 .form--task {
   position: absolute;
   z-index: 100;
-  top: 10rem;
+  top: 7.5rem;
   right: 10rem;
 }
 

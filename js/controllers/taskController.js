@@ -37,13 +37,16 @@ const addTask = function () {
     addTaskView.openForm();
     return;
   }
-  tasksView.renderTasks(taskModel.getSelectedTasks());
-
-  // **************************** Space View **************************
-  spaceView.renderSpaces(model.state.spaces, model.state.tasks);
+  tasksView.renderTasks(taskModel.getAllTasks());
+  tabView.countAll(taskModel.getAllTasks());
+  tabView.countPending(taskModel.getPendingTasks());
 
   addTaskView.clearInput();
   addTaskView.closeForm();
+  tabView.defaultTab();
+
+  // **************************** Space View **************************
+  spaceView.renderSpaces(model.state.spaces, model.state.tasks);
 };
 
 // Edit space name from tasks pane
@@ -55,6 +58,25 @@ const changeSpaceName = function (newName) {
   spaceView.renderSpaces(model.state.spaces, model.state.tasks);
 };
 
+// Select tab
+const selectTab = function () {
+  tabView.selectTab(tab => {
+    taskModel.activeTab(tab);
+    console.log(model.state.selectedTab);
+
+    if (tab === 'all') tasksView.renderTasks(taskModel.getAllTasks());
+    else if (tab === 'pending')
+      tasksView.renderTasks(taskModel.getPendingTasks());
+    else if (tab === 'completed')
+      tasksView.renderTasks(taskModel.getCompletedTasks());
+    else if (tab === 'archived')
+      tasksView.renderTasks(taskModel.getArchivedTasks());
+  });
+};
+selectTab();
+
+///////////////////////////////////////////////////////////////
+// task actions
 taskActionsView.markAsComplete((taskName, action) => {
   console.log(taskModel.activateTaskProperty(taskName, action));
 });

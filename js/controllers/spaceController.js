@@ -35,23 +35,27 @@ const addNewSpace = function () {
   const { valid } = model.validateInput(newSpace, 25);
 
   if (!valid) return;
-
   const success = spaceModel.addNewSpace(newSpace);
   if (!success) {
     alert(`${newSpace} already exists!`);
     addSpaceView.openForm();
     return;
   }
-
   // updateSpaces
   addSpaceView.renderAddedSpaces(success, model.state.tasks);
+  addSpaceView.clearInput();
+  addSpaceView.closeForm();
 
   // ******************8 taskView **********************
   taskView.renderTasks(taskModel.getSelectedTasks());
 
-  addSpaceView.clearInput();
-  addSpaceView.closeForm();
+  // ****************** tabView **********************
   tabView.showSpaceTitle(model.state.selectedSpace);
+  tabView.defaultTab();
+  tabView.countAll();
+  tabView.countPending();
+  tabView.countCompleted();
+  tabView.countArchived();
 };
 
 // Select Space
@@ -61,7 +65,12 @@ const selectSpaceController = function (clicked) {
   tabView.showSpaceTitle(model.state.selectedSpace);
 
   // ******************8 taskView **********************
-  taskView.renderTasks(taskModel.getSelectedTasks());
+  taskView.renderTasks(taskModel.getAllTasks());
+  tabView.defaultTab();
+  tabView.countAll(taskModel.getAllTasks());
+  tabView.countPending(taskModel.getPendingTasks());
+  tabView.countCompleted(taskModel.getCompletedTasks());
+  tabView.countArchived(taskModel.getArchivedTasks());
 };
 
 export function initSpaces() {
