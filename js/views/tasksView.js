@@ -12,7 +12,7 @@ export const renderTasks = function (tasks) {
                   <div>
                     <span class="left">
                       <div class="circle done"></div>
-                      <p class="task-name">
+                      <p class="task-name" contenteditable="true">
                         ${help.capitalizeTask(task.taskName)}
                       </p>
                     </span>
@@ -22,7 +22,6 @@ export const renderTasks = function (tasks) {
                     </div>
                   </div>
                   <div class="right">
-                    <div class="circle edit"></div>
                     <div class="circle archive"></div>
                     <div class="circle delete"></div>
                   </div>

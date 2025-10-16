@@ -35,60 +35,43 @@
         <!-- left pane -->
         <section class="left--pane">
           <div class="left--top">
-            <h2 class="spaces--title">Spaces List</h2>
-            <!-- <span>KOFI <i class="fa-solid fa-circle-user"></i></span> -->
+            <h2 class="logo"><span>Q</span>ueue UP</h2>
+            <p class="profile"><span>KN</span></p>
           </div>
 
           <div class="container">
             <div class="display--spaces">
               <ul class="spaces--list">
-                <li class="space--item selected">
-                  <div>
-                    <p class="item--name">Home Chores</p>
-                  </div>
-                  <span class="item--nums">10</span>
-                </li>
-                <li class="">
-                  <div>
-                    <p class="space--name">School Assingments</p>
-                  </div>
-                  <span class="space--nums">9</span>
-                </li>
-                <li class="space--item">
-                  <div>
-                    <p class="space--name">Church</p>
-                    <p class="last--opened">09-11-2025</p>
-                  </div>
-                  <span class="space--nums">7</span>
-                </li>
+                <!-- Content from JS -->
               </ul>
             </div>
+            <!-- Overlay -->
             <div class="overlay hidden"></div>
-          </div>
 
-          <!-- Form to input space -->
-          <div class="form--space">
-            <form action="#">
-              <div class="form hidden">
-                <p class="space-text check--input">Not more than 25 chars</p>
-                <input
-                  type="text"
-                  placeholder="Create Space"
-                  class="space--input"
-                />
-              </div>
+            <!-- Form to input space -->
+            <div class="form--space">
+              <form action="#">
+                <div class="form hidden">
+                  <p class="space-text check--input">Not more than 25 chars</p>
+                  <input
+                    type="text"
+                    placeholder="Create Space"
+                    class="space--input"
+                  />
+                </div>
+              </form>
+            </div>
 
-              <div class="buttons">
-                <button class="btn btn--1 open--space">+</button>
-                <button type="submit" class="btn btn--1 add--space hidden">
-                  <i class="fa-solid fa-check tick"></i>
-                </button>
-              </div>
-            </form>
+            <div class="buttons space-buttons">
+              <button class="btn btn--1 open--space">+</button>
+              <button type="submit" class="btn btn--1 add--space hidden">
+                <i class="fa-solid fa-check tick"></i>
+              </button>
+            </div>
           </div>
         </section>
 
-        <!-- ------------------------------------------------------------------------------------ -->
+        <!-- ---------------------------------------------------------------------------- -->
         <!-- Right Section of App -->
         <section class="right--pane">
           <nav class="nav-bar">
@@ -100,7 +83,7 @@
             <div class="navigation">
               <ul class="tabs">
                 <li class="tab selected-tab" data-tab="all">
-                  <p class="tab-name">All</p>
+                  <p class="tab-name">All Tasks</p>
                   <span class="tab-num">0</span>
                 </li>
                 <li class="tab" data-tab="pending">
@@ -140,56 +123,37 @@
           </nav>
 
           <div class="display--tasks">
-            <!-- input-task form -->
-
+            <!-- Overlay -->
             <div class="overlay hidden"></div>
             <div>
               <ul class="task-list">
-                <li class="task">
-                  <div>
-                    <span class="left">
-                      <div class="circle done"></div>
-                      <p class="task-name">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Corrupti odit adipisci
-                      </p>
-                    </span>
-                    <div class="task--details">
-                      <p class="date">07-08-2025</p>
-                      <p class="edited">Edited</p>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <div class="circle edit"></div>
-                    <div class="circle archive"></div>
-                    <div class="circle delete"></div>
-                  </div>
-                </li>
-
-                <li class="task">
-                  <div>
-                    <span class="left">
-                      <div class="circle done"></div>
-                      <p class="task-name">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Corrupti odit adipisci
-                      </p>
-                    </span>
-                    <div class="task--details">
-                      <p class="date">07-08-2025</p>
-                      <p class="edited">Edited</p>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <div class="circle edit"></div>
-                    <div class="circle archive"></div>
-                    <div class="circle delete"></div>
-                  </div>
-                </li>
+                <!-- Content From JS -->
               </ul>
             </div>
           </div>
         </section>
+
+        <div class="profile-screen hidden">
+          <div class="inner-profile-screen">
+            <div class="profile-circle">
+              <p class="profile-name">KN</p>
+            </div>
+
+            <div class="profile-details">
+              <input type="text" value="Kofi Nyefreh" />
+              <p class="profile-description">
+                You have <span>40</span> spaces created, <span>80</span> queues
+                created in total, <span>56%</span> completed, and
+                <span>44%</span> pending queues!
+              </p>
+            </div>
+          </div>
+          <p class="profile-footer">
+            This Account was Created On: December 30, 2025
+          </p>
+        </div>
+
+        <div class="profile-overlay hidden"></div>
       </div>
     </main>
   </body>

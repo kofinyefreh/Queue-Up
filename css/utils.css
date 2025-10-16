@@ -20,27 +20,35 @@ html {
 /* Utility Classes */
 
 .selected-tab {
-  background-color: var(--color-second);
+  background-color: rgb(0, 0, 0, 0.6);
+  color: #fff;
 }
 
 .selected {
-  background-color: var(--color-second);
+  background-color: rgb(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.selected-tab .tab-num {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .hidden {
+  /* transform: translateY(10rem);
+  opacity: 0;
+  transition: all 0.1s;
+  z-index: -100; */
   display: none;
 }
 
 .block-space-input {
   opacity: 1;
-  transition: all 0.3s;
+  transition: all 0.15s;
 }
 
 .block-task-input {
-  transform: translateY(3rem);
   opacity: 1;
-  transition: all 0.5s, transform 1ms;
-  left: 15%;
+  transition: all 0.15s;
 }
 
 .tick {
@@ -52,13 +60,15 @@ html {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: rgb(23, 23, 23, 0.9);
+  font-family: monospace;
 }
 
 .strike {
   text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .full {
-  background-color: var(--color--accent);
+  background-color: rgba(0, 0, 0, 0.6);
   border: none;
 }
