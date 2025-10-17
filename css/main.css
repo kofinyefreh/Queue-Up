@@ -83,7 +83,7 @@ body {
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  cursor: default;
+  cursor: pointer;
   border-radius: 5px;
   padding: 1rem 2rem;
   transition: all 0.3s;
@@ -340,19 +340,31 @@ body {
 }
 
 .done {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
   transition: all 0s;
   margin-top: 0.2rem;
 }
 
-.done:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+.done .tick {
+  display: block;
+  padding: 0.1rem;
+  font-size: 1rem;
   color: transparent;
-  border: none;
+}
+
+.done.full .tick {
+  color: rgb(0, 0, 0, 0.6);
+}
+
+.done:hover {
   transform: scale(1);
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.done:hover .tick {
+  color: black;
 }
 
 /* Form-task Styling */

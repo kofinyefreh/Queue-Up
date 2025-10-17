@@ -8,12 +8,14 @@ export function addNewTask(newTask) {
   const selectedArray = model.state.tasks.filter(
     item => item.space === model.state.selectedSpace
   );
-  const exists = selectedArray.some(task => task.taskName === newTask);
+  const exists = selectedArray.some(
+    task => task.taskName === help.capitalizeTask(newTask)
+  );
   if (exists) return false;
 
   model.state.tasks.unshift({
     id: 0,
-    taskName: newTask,
+    taskName: help.capitalizeTask(newTask),
     time: new Date(),
     archived: false,
     completed: false,
@@ -102,5 +104,5 @@ export function activateTaskProperty(taskName, property) {
   );
 
   if (activeTask) activeTask[property] = !activeTask[property];
-  return activeTask;
+  return activeTask[property];
 }

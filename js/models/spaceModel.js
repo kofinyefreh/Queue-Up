@@ -15,7 +15,6 @@ export function addNewSpace(newSpace) {
     time: new Date(),
   });
   model.state.selectedSpace = help.capitalize(newSpace);
-  console.log(model.state.spaces);
   return model.state.spaces;
 }
 

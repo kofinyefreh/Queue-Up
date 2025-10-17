@@ -37,13 +37,16 @@ const addTask = function () {
     addTaskView.openForm();
     return;
   }
+
   tasksView.renderTasks(taskModel.getAllTasks());
   tabView.countAll(taskModel.getAllTasks());
   tabView.countPending(taskModel.getPendingTasks());
+  tabView.countCompleted(taskModel.getCompletedTasks());
+  tabView.countArchived(taskModel.getArchivedTasks());
+  tabView.defaultTab();
 
   addTaskView.clearInput();
   addTaskView.closeForm();
-  tabView.defaultTab();
 
   // **************************** Space View **************************
   spaceView.renderSpaces(model.state.spaces, model.state.tasks);
@@ -52,7 +55,13 @@ const addTask = function () {
 // Edit space name from tasks pane
 const changeSpaceName = function (newName) {
   taskModel.editeSpaceNameList(newName);
-  tasksView.renderTasks(taskModel.getSelectedTasks());
+
+  tasksView.renderTasks(taskModel.getAllTasks());
+  tabView.countAll(taskModel.getAllTasks());
+  tabView.countPending(taskModel.getPendingTasks());
+  tabView.countCompleted(taskModel.getCompletedTasks());
+  tabView.countArchived(taskModel.getArchivedTasks());
+  tabView.defaultTab();
 
   // ************* space View ***********************
   spaceView.renderSpaces(model.state.spaces, model.state.tasks);
@@ -62,7 +71,6 @@ const changeSpaceName = function (newName) {
 const selectTab = function () {
   tabView.selectTab(tab => {
     taskModel.activeTab(tab);
-    console.log(model.state.selectedTab);
 
     if (tab === 'all') tasksView.renderTasks(taskModel.getAllTasks());
     else if (tab === 'pending')
@@ -77,8 +85,17 @@ selectTab();
 
 ///////////////////////////////////////////////////////////////
 // task actions
+// ---- Mark as completed and Uncompleted
 taskActionsView.markAsComplete((taskName, action) => {
-  console.log(taskModel.activateTaskProperty(taskName, action));
+  console.log(action);
+  const completedState = taskModel.activateTaskProperty(taskName, action);
+  if (!completedState) tasksView.renderTasks(taskModel.getCompletedTasks());
+  else tasksView.renderTasks(taskModel.getAllTasks());
+
+  tabView.countAll(taskModel.getAllTasks());
+  tabView.countPending(taskModel.getPendingTasks());
+  tabView.countCompleted(taskModel.getCompletedTasks());
+  tabView.countArchived(taskModel.getArchivedTasks());
 });
 
 export function initTasks() {

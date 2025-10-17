@@ -11,8 +11,14 @@ export const renderTasks = function (tasks) {
     li.innerHTML = `
                   <div>
                     <span class="left">
-                      <div class="circle done"></div>
-                      <p class="task-name" contenteditable="true">
+
+                      <div class="circle done ${task.completed && 'full'}">
+                          <span><i class="fa-solid fa-check tick"></i></span>
+                      </div>
+
+                      <p class="task-name ${
+                        task.completed && 'strike'
+                      }" contenteditable="true" >
                         ${help.capitalizeTask(task.taskName)}
                       </p>
                     </span>

@@ -57,6 +57,7 @@ export function countAll(tasks) {
   }
   all.textContent = tasks.length;
 }
+
 export function countPending(tasks) {
   if (!tasks) {
     pending.textContent = 0;
@@ -64,6 +65,7 @@ export function countPending(tasks) {
   }
   pending.textContent = tasks.length;
 }
+
 export function countCompleted(tasks) {
   if (!tasks) {
     completed.textContent = 0;
@@ -71,6 +73,7 @@ export function countCompleted(tasks) {
   }
   completed.textContent = tasks.length;
 }
+
 export function countArchived(tasks) {
   if (!tasks) {
     archived.textContent = 0;
