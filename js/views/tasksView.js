@@ -17,7 +17,11 @@ export const renderTasks = function (tasks) {
                       </div>
 
                       <p class="task-name ${
-                        task.completed && 'strike'
+                        task.completed
+                          ? 'strike'
+                          : task.archived
+                          ? 'grey-text'
+                          : ''
                       }" contenteditable="true" >
                         ${help.capitalizeTask(task.taskName)}
                       </p>
@@ -28,7 +32,10 @@ export const renderTasks = function (tasks) {
                     </div>
                   </div>
                   <div class="right">
-                    <div class="circle archive"></div>
+                    <div class="circle archive ${
+                      task.archived && 'archived-full'
+                    }"
+                    }></div>
                     <div class="circle delete"></div>
                   </div>
     `;

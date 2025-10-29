@@ -74,9 +74,7 @@ export function getAllTasks() {
 // Get pending task
 export function getPendingTasks() {
   const selectedArray = getSelectedTasks();
-  const pendingList = selectedArray.filter(
-    item => !item.completed || (item.archived && !item.completed)
-  );
+  const pendingList = selectedArray.filter(item => !item.completed);
   return pendingList;
 }
 
@@ -90,7 +88,9 @@ export function getCompletedTasks() {
 // Get Archived Task
 export function getArchivedTasks() {
   const selectedArray = getSelectedTasks();
-  const archivedList = selectedArray.filter(item => item.archived);
+  const archivedList = selectedArray.filter(
+    item => !item.completed && item.archived
+  );
   return archivedList;
 }
 

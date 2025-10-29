@@ -87,9 +87,20 @@ selectTab();
 // task actions
 // ---- Mark as completed and Uncompleted
 taskActionsView.markAsComplete((taskName, action) => {
-  console.log(action);
   const completedState = taskModel.activateTaskProperty(taskName, action);
   if (!completedState) tasksView.renderTasks(taskModel.getCompletedTasks());
+  else tasksView.renderTasks(taskModel.getAllTasks());
+
+  tabView.countAll(taskModel.getAllTasks());
+  tabView.countPending(taskModel.getPendingTasks());
+  tabView.countCompleted(taskModel.getCompletedTasks());
+  tabView.countArchived(taskModel.getArchivedTasks());
+  console.log(selectedTab);
+});
+
+taskActionsView.markAsArchived((taskName, action) => {
+  const archivedState = taskModel.activateTaskProperty(taskName, action);
+  if (!archivedState) tasksView.renderTasks(taskModel.getArchivedTasks());
   else tasksView.renderTasks(taskModel.getAllTasks());
 
   tabView.countAll(taskModel.getAllTasks());

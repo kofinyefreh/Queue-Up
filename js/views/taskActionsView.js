@@ -3,16 +3,26 @@ const taskList = document.querySelector('.task-list');
 export function markAsComplete(handler) {
   // Select DomEl
   taskList.addEventListener('click', function (e) {
-    // if (!e.target.closest('.left')) return;
     if (!e.target.closest('.done')) return;
-    console.log(e.target);
 
     const item = e.target.closest('.left');
     const taskName = item.querySelector('.task-name');
     const completedIcon = item.querySelector('.done');
-    taskName.classList.toggle('strike');
-    completedIcon.classList.toggle('full');
 
     handler(taskName.textContent.trim(), 'completed');
+  });
+}
+
+export function markAsArchived(handler) {
+  // Select DomEl
+  taskList.addEventListener('click', function (e) {
+    if (!e.target.classList.contains('archive')) return;
+
+    const taskItem = e.target.closest('.task');
+    const taskName = taskItem.querySelector('.task-name');
+    const archiveIcon = taskItem.querySelector('.archive');
+    console.log(archiveIcon);
+
+    handler(taskName.textContent.trim(), 'archived');
   });
 }

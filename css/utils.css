@@ -62,6 +62,15 @@ html {
   color: rgba(0, 0, 0, 0.4);
 }
 
+.grey-text {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.archived-full {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+}
+
 /* .full {
   background-color: transparent;
   color: black;
