@@ -5,6 +5,9 @@ import * as addTaskView from '../views/addTaskView.js';
 import * as spaceView from '../views/spaceView.js';
 import * as tabView from '../views/tabsView.js';
 import * as taskActionsView from '../views/taskActionsView.js';
+import * as prendingTasksView from '../views/pendingTasksView.js';
+import * as completeTasksView from '../views/completeTasksView.js';
+import * as archiveTasksView from '../views/archiveTasksView.js';
 
 // Open Form
 const openForm = function () {
@@ -74,11 +77,11 @@ const selectTab = function () {
 
     if (tab === 'all') tasksView.renderTasks(taskModel.getAllTasks());
     else if (tab === 'pending')
-      tasksView.renderTasks(taskModel.getPendingTasks());
+      prendingTasksView.renderPendingTasks(taskModel.getPendingTasks());
     else if (tab === 'completed')
-      tasksView.renderTasks(taskModel.getCompletedTasks());
+      completeTasksView.renderCompletedTasks(taskModel.getCompletedTasks());
     else if (tab === 'archived')
-      tasksView.renderTasks(taskModel.getArchivedTasks());
+      archiveTasksView.renderArchivedTasks(taskModel.getArchivedTasks());
   });
 };
 selectTab();
@@ -88,20 +91,28 @@ selectTab();
 // ---- Mark as completed and Uncompleted
 taskActionsView.markAsComplete((taskName, action) => {
   const completedState = taskModel.activateTaskProperty(taskName, action);
-  if (!completedState) tasksView.renderTasks(taskModel.getCompletedTasks());
-  else tasksView.renderTasks(taskModel.getAllTasks());
+  if (!completedState && model.state.selectedTab === 'completed')
+    completeTasksView.renderCompletedTasks(taskModel.getCompletedTasks());
+  if (completedState && model.state.selectedTab === 'all')
+    tasksView.renderTasks(taskModel.getAllTasks());
+  if (completedState && model.state.selectedTab === 'pending')
+    prendingTasksView.renderPendingTasks(taskModel.getPendingTasks());
+  if (completedState && model.state.selectedTab === 'archived')
+    archiveTasksView.renderArchivedTasks(taskModel.getArchivedTasks());
 
   tabView.countAll(taskModel.getAllTasks());
   tabView.countPending(taskModel.getPendingTasks());
   tabView.countCompleted(taskModel.getCompletedTasks());
   tabView.countArchived(taskModel.getArchivedTasks());
-  console.log(selectedTab);
+  console.log(model.state.selectedTab);
 });
 
 taskActionsView.markAsArchived((taskName, action) => {
   const archivedState = taskModel.activateTaskProperty(taskName, action);
-  if (!archivedState) tasksView.renderTasks(taskModel.getArchivedTasks());
-  else tasksView.renderTasks(taskModel.getAllTasks());
+  if (!archivedState && model.state.selectedTab === 'archived')
+    archiveTasksView.renderArchivedTasks(taskModel.getArchivedTasks());
+  if (archivedState && model.state.selectedTab === 'all')
+    tasksView.renderTasks(taskModel.getAllTasks());
 
   tabView.countAll(taskModel.getAllTasks());
   tabView.countPending(taskModel.getPendingTasks());

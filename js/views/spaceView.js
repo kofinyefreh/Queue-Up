@@ -30,6 +30,6 @@ export function renderSpaces(spaces, tasks) {
     `;
     spacesList.appendChild(li);
 
-    // li.scrollIntoView(/*{ behavior: 'smooth' }*/);
+    // li.scrollIntoView({ behavior: 'smooth' });
   });
 }
