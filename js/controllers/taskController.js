@@ -120,6 +120,15 @@ taskActionsView.markAsArchived((taskName, action) => {
   tabView.countArchived(taskModel.getArchivedTasks());
 });
 
+// Deleting a task
+taskActionsView.deleteTask(taskName => {
+  taskModel.deleteTask(taskName);
+
+  tasksView.renderTasks(taskModel.getAllTasks());
+  tabView.countAll(taskModel.getAllTasks());
+  tabView.countPending(taskModel.getPendingTasks());
+});
+
 export function initTasks() {
   tasksView.renderTasks(taskModel.getSelectedTasks());
   addTaskView.onOpenForm(openForm);

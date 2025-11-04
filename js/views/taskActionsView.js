@@ -26,3 +26,15 @@ export function markAsArchived(handler) {
     handler(taskName.textContent.trim(), 'archived');
   });
 }
+
+export function deleteTask(handler) {
+  taskList.addEventListener('click', function (e) {
+    if (!e.target.classList.contains('delete')) return;
+
+    const taskItem = e.target.closest('.task');
+    const taskName = taskItem.querySelector('.task-name');
+    const deleteIcon = taskItem.querySelector('.delete');
+
+    handler(taskName.textContent.trim());
+  });
+}

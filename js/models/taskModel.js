@@ -14,7 +14,7 @@ export function addNewTask(newTask) {
   if (exists) return false;
 
   model.state.tasks.unshift({
-    id: 0,
+    id: model.state.tasks.length,
     taskName: help.capitalizeTask(newTask),
     time: new Date(),
     archived: false,
@@ -96,7 +96,6 @@ export function getArchivedTasks() {
 
 ///////////////////////////////////////////////////////////////////
 // Task Actions
-
 export function activateTaskProperty(taskName, property) {
   const activeTask = model.state.tasks.find(
     item =>
@@ -105,4 +104,16 @@ export function activateTaskProperty(taskName, property) {
 
   if (activeTask) activeTask[property] = !activeTask[property];
   return activeTask[property];
+}
+
+///////////////////////////////////////////////////////////////////
+// Delete Task logic
+export function deleteTask(taskName) {
+  const activeTask = model.state.tasks.findIndex(
+    item =>
+      item.taskName === taskName && item.space === model.state.selectedSpace
+  );
+
+  model.state.tasks.splice(activeTask, 1);
+  return activeTask;
 }
