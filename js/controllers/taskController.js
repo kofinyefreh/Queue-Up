@@ -129,6 +129,13 @@ taskActionsView.deleteTask(taskName => {
   tabView.countPending(taskModel.getPendingTasks());
 });
 
+// Editing a task
+taskActionsView.editTask((oldTaskName, newTaskName) => {
+  taskModel.editTaskName(oldTaskName, newTaskName);
+
+  tasksView.renderTasks(taskModel.getAllTasks());
+});
+
 export function initTasks() {
   tasksView.renderTasks(taskModel.getSelectedTasks());
   addTaskView.onOpenForm(openForm);

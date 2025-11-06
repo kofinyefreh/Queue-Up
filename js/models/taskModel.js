@@ -14,7 +14,8 @@ export function addNewTask(newTask) {
   if (exists) return false;
 
   model.state.tasks.unshift({
-    id: model.state.tasks.length,
+    // ID : ### Fix me later ###
+    id: Date.now(),
     taskName: help.capitalizeTask(newTask),
     time: new Date(),
     archived: false,
@@ -23,6 +24,7 @@ export function addNewTask(newTask) {
     edited: false,
   });
 
+  console.log(model.state.tasks);
   model.state.selectedTab = 'all';
   return model.state.tasks;
 }
@@ -116,4 +118,25 @@ export function deleteTask(taskName) {
 
   model.state.tasks.splice(activeTask, 1);
   return activeTask;
+}
+
+///////////////////////////////////////////////////////////////////
+// Edit Task Logic
+export function editTaskName(oldTaskName, newTaskName) {
+  const trimmed = help.capitalizeTask(newTaskName.trim());
+
+  if (trimmed.length > 250 || trimmed.length === 0) {
+    alert(`"${trimmed}" is an invalid task name!`);
+    return;
+  }
+
+  const spaceTasks = model.state.tasks.filter(
+    item => item.space === model.state.selectedSpace
+  );
+
+  const oldTask = spaceTasks.find(item => item.taskName === oldTaskName);
+
+  if (oldTask === newTaskName) return;
+  oldTask.taskName = newTaskName;
+  oldTask.edited = true;
 }

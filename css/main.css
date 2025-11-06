@@ -283,6 +283,7 @@ body {
 .left {
   display: flex;
   gap: 1rem;
+  /* background-color: red; */
 }
 
 .right {

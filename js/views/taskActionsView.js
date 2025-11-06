@@ -1,3 +1,5 @@
+import * as help from '../helpers.js';
+
 const taskList = document.querySelector('.task-list');
 
 export function markAsComplete(handler) {
@@ -37,4 +39,35 @@ export function deleteTask(handler) {
 
     handler(taskName.textContent.trim());
   });
+}
+
+// Editing a task
+export function editTask(handler) {
+  taskList.addEventListener('click', function (e) {
+    if (!e.target.classList.contains('task-name')) return;
+
+    const selectedTask = e.target;
+    const oldTaskName = selectedTask.textContent.trim();
+
+    selectedTask.addEventListener('keydown', function (event) {
+      console.log(`we're in`);
+      if (event.key === 'Enter') {
+        event.preventDefault();
+
+        const newTaskName = help.capitalizeTask(
+          event.target.textContent.trim()
+        );
+
+        if (oldTaskName === newTaskName) {
+          selectedTask.blur();
+          selectedTask.textContent = oldTaskName;
+          return;
+        }
+
+        handler(oldTaskName, newTaskName);
+      }
+    });
+  });
+
+  // if (!selectedTask) return;
 }
