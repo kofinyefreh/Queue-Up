@@ -20,7 +20,7 @@ export const renderPendingTasks = function (tasks) {
                       </p>
                     </span>
                     <div class="task--details">
-                      <p class="date">${help.formatDate(task.time)}</p>
+                      <p class="date">${help.calcDays(task.time)}</p>
                       <p class=${task.edited ? 'tag' : 'hidden'}>Edited</p>
                       <p class=${task.archived ? 'tag' : 'hidden'}>Archived</p>
                     </div>

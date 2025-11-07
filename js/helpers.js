@@ -1,8 +1,9 @@
 // Utility to format date
-export function formatDate(date) {
+function formatDate(date) {
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 }
 
+// Capitalizing spaces
 export function capitalize(input) {
   const trimmed = input.trim();
   if (trimmed.includes(' ')) {
@@ -13,7 +14,29 @@ export function capitalize(input) {
   } else return `${trimmed.slice(0, 1).toUpperCase()}${trimmed.slice(1)}`;
 }
 
+// Capitalizing Task
 export function capitalizeTask(input) {
   const trimmed = input.trim();
   return `${trimmed.slice(0, 1).toUpperCase()}${trimmed.slice(1)}`;
+}
+
+// Calculate days passed
+export function calcDays(date) {
+  const days = Math.floor(Math.abs(Date.now() - date) / (1000 * 60 * 60 * 24));
+  if (days === 1) return 'YESTERDAY';
+  if (days === 0) return 'TODAY';
+  if (days > 1 && days <= 30) return `${days} DAYS AGO`;
+  if (days > 30) return formatDate(date);
+}
+
+// Creating profile Name abbr
+export function profile(profileName) {
+  const array = profileName.split(' ');
+  if (array.length > 1) {
+    const abbr = array.map(word => word.at(0).toUpperCase());
+    return abbr.slice(0, 2).join('');
+  } else if ((array.length = 1)) {
+    const abbr = array.map(word => word.at(0).toUpperCase());
+    return abbr.at(0);
+  }
 }

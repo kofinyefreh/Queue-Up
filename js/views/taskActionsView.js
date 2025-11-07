@@ -23,7 +23,6 @@ export function markAsArchived(handler) {
     const taskItem = e.target.closest('.task');
     const taskName = taskItem.querySelector('.task-name');
     const archiveIcon = taskItem.querySelector('.archive');
-    console.log(archiveIcon);
 
     handler(taskName.textContent.trim(), 'archived');
   });
@@ -50,7 +49,6 @@ export function editTask(handler) {
     const oldTaskName = selectedTask.textContent.trim();
 
     selectedTask.addEventListener('keydown', function (event) {
-      console.log(`we're in`);
       if (event.key === 'Enter') {
         event.preventDefault();
 

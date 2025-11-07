@@ -20,7 +20,7 @@ export const renderArchivedTasks = function (tasks) {
                       </p>
                     </span>
                     <div class="task--details">
-                      <p class="date">${help.formatDate(task.time)}</p>
+                      <p class="date">${help.calcDays(task.time)}</p>
                       <p class=${task.edited ? 'tag' : 'hidden'}>Edited</p>
                       <p class="tag">Archived</p>
                     </div>

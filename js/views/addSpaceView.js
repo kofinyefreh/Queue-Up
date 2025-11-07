@@ -62,13 +62,12 @@ export function renderAddedSpaces(spaces, tasks) {
     li.innerHTML = `
       <div>
         <p class="space--name">${help.capitalize(space.space)}</p>
-        <p class="last--opened">${help.formatDate(space.time)}</p>
+        <p class="last--opened">Created ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>
     `;
 
     spacesList.appendChild(li);
-    li.scrollIntoView(/*{ behavior: 'smooth' }*/);
     li.setAttribute('data-space', space.space);
   });
 }

@@ -104,7 +104,6 @@ taskActionsView.markAsComplete((taskName, action) => {
   tabView.countPending(taskModel.getPendingTasks());
   tabView.countCompleted(taskModel.getCompletedTasks());
   tabView.countArchived(taskModel.getArchivedTasks());
-  console.log(model.state.selectedTab);
 });
 
 taskActionsView.markAsArchived((taskName, action) => {
@@ -127,6 +126,9 @@ taskActionsView.deleteTask(taskName => {
   tasksView.renderTasks(taskModel.getAllTasks());
   tabView.countAll(taskModel.getAllTasks());
   tabView.countPending(taskModel.getPendingTasks());
+
+  // ************* space View ***********************
+  spaceView.renderSpaces(model.state.spaces, model.state.tasks);
 });
 
 // Editing a task

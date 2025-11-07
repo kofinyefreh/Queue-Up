@@ -1,6 +1,6 @@
 import * as model from './model.js';
 import * as help from '../helpers.js';
-console.log('nice one');
+console.log('Task Module');
 
 ///////////////////////////////////////////////////////////////////
 // Add tasks
@@ -24,7 +24,6 @@ export function addNewTask(newTask) {
     edited: false,
   });
 
-  console.log(model.state.tasks);
   model.state.selectedTab = 'all';
   return model.state.tasks;
 }
@@ -139,4 +138,9 @@ export function editTaskName(oldTaskName, newTaskName) {
   if (oldTask === newTaskName) return;
   oldTask.taskName = newTaskName;
   oldTask.edited = true;
+}
+
+// Calculate tasks date
+export function CalcDays() {
+  help.calcDate();
 }

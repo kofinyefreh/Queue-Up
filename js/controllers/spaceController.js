@@ -2,7 +2,6 @@ import * as model from '../models/model.js';
 import * as spaceModel from '../models/spaceModel.js';
 import * as taskModel from '../models/taskModel.js';
 import * as taskView from '../views/tasksView.js';
-import * as spaceView from '../views/spaceView.js';
 import * as addSpaceView from '../views/addSpaceView.js';
 import * as selectSpaceView from '../views/selectSpaceView.js';
 import * as tabView from '../views/tabsView.js';

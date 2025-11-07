@@ -412,7 +412,7 @@ body {
 }
 
 .overlay {
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2.5px);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -519,6 +519,6 @@ body {
   width: 100vw;
   height: 100vh;
   background: none;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(2.5px);
   z-index: 0;
 }

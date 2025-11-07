@@ -24,7 +24,15 @@ export function setSelectedSpace(DOMel) {
   model.state.selectedSpace = spaceNameEl.textContent;
 }
 
-// Update Spaces
-// export function updateSelectedSpace(selectedSpace) {
-//   return model.state.tasks.filter(item => item.taskName === selectedSpace);
-// }
+// Profile logic
+export function profileCardDetails() {
+  return {
+    profileData,
+    profileNameData,
+    numSpacesData,
+    numQueuesData,
+    percentageCompletedData,
+    percentagePendingData,
+    footerData,
+  };
+}
