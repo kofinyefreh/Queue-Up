@@ -16,17 +16,20 @@ export const renderArchivedTasks = function (tasks) {
                       </div>
 
                       <p class="task-name ${task.archived ? 'grey-text' : ''}" >
-                        ${help.capitalizeTask(task.taskName)}
+                        ${help.capitalizeTask(task.name)}
                       </p>
                     </span>
                     <div class="task--details">
-                      <p class="date">${help.calcDays(task.time)}</p>
+                      <p class="date"><i class="fa-regular fa-clock"></i>${help.calcDays(
+                        task.time
+                      )}</p>
                       <p class=${task.edited ? 'tag' : 'hidden'}>Edited</p>
                       <p class="tag">Archived</p>
                     </div>
                   </div>
                   <div class="right">
                     <div class="circle archive"></div>
+                    <div class="circle disactive"></div>
                   </div>
     `;
 

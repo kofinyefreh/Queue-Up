@@ -16,11 +16,15 @@ export const renderTasks = function (tasks) {
                       </div>
 
                       <p class="task-name" contenteditable="true" >
-                        ${help.capitalizeTask(task.taskName)}
+                        ${help.capitalizeTask(task.name)}
                       </p>
                     </span>
                     <div class="task--details">
-                      <p class="date">${help.calcDays(task.time)}</p>
+                      <p class="date">
+                      <i class="fa-regular fa-clock"></i>${help.calcDays(
+                        task.time
+                      )}
+                      </p>
                       <p class=${task.edited ? 'tag' : 'hidden'}>Edited</p>
                     </div>
                   </div>

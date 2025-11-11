@@ -9,14 +9,14 @@ export function addNewTask(newTask) {
     item => item.space === model.state.selectedSpace
   );
   const exists = selectedArray.some(
-    task => task.taskName === help.capitalizeTask(newTask)
+    task => task.name === help.capitalizeTask(newTask)
   );
   if (exists) return false;
 
   model.state.tasks.unshift({
     // ID : ### Fix me later ###
     id: Date.now(),
-    taskName: help.capitalizeTask(newTask),
+    name: help.capitalizeTask(newTask),
     time: new Date(),
     archived: false,
     completed: false,
@@ -38,22 +38,30 @@ export function getSelectedTasks() {
 
 ///////////////////////////////////////////////////////////////////
 // Edit Space Name
-export function editeSpaceNameList(newName) {
-  const trimmed = help.capitalize(newName.trim());
-  if (trimmed.length > 25 || trimmed.length === 0) {
-    alert(`"${trimmed}" is an invalid name!`);
+export function editSpaceName(oldSpaceName, newSpaceName) {
+  console.log(oldSpaceName, newSpaceName);
+
+  if (newSpaceName.length > 25 || newSpaceName.length === 0) {
+    alert(`${newSpaceName} is not a valid space name`);
     return;
   }
-  const spacesArray = model.state.spaces.find(
-    item => item.space === model.state.selectedSpace
+
+  const alreadyExists = model.state.spaces.some(
+    space => space.name === newSpaceName
   );
-  const tasksArray = model.state.tasks.filter(
-    item => item.space === model.state.selectedSpace
+  if (alreadyExists) return alert(`${newSpaceName} already exists in spaces`);
+
+  const selSpace = model.state.spaces.find(
+    space => space.name === oldSpaceName
   );
 
-  spacesArray.space = help.capitalize(newName);
-  tasksArray.forEach(task => (task.space = trimmed));
-  model.state.selectedSpace = trimmed;
+  const spaceTasks = model.state.tasks.filter(
+    task => task.space === oldSpaceName
+  );
+
+  selSpace.name = newSpaceName;
+  spaceTasks.forEach(task => (task.space = newSpaceName));
+  model.state.selectedSpace = newSpaceName;
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -99,8 +107,7 @@ export function getArchivedTasks() {
 // Task Actions
 export function activateTaskProperty(taskName, property) {
   const activeTask = model.state.tasks.find(
-    item =>
-      item.taskName === taskName && item.space === model.state.selectedSpace
+    item => item.name === taskName && item.space === model.state.selectedSpace
   );
 
   if (activeTask) activeTask[property] = !activeTask[property];
@@ -111,8 +118,7 @@ export function activateTaskProperty(taskName, property) {
 // Delete Task logic
 export function deleteTask(taskName) {
   const activeTask = model.state.tasks.findIndex(
-    item =>
-      item.taskName === taskName && item.space === model.state.selectedSpace
+    item => item.name === taskName && item.space === model.state.selectedSpace
   );
 
   model.state.tasks.splice(activeTask, 1);
@@ -133,14 +139,11 @@ export function editTaskName(oldTaskName, newTaskName) {
     item => item.space === model.state.selectedSpace
   );
 
-  const oldTask = spaceTasks.find(item => item.taskName === oldTaskName);
+  if (spaceTasks.some(task => task.name === newTaskName))
+    return alert('task already exits');
 
-  if (oldTask === newTaskName) return;
-  oldTask.taskName = newTaskName;
+  const oldTask = spaceTasks.find(item => item.name === oldTaskName);
+
+  oldTask.name = newTaskName;
   oldTask.edited = true;
-}
-
-// Calculate tasks date
-export function CalcDays() {
-  help.calcDate();
 }

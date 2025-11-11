@@ -6,12 +6,12 @@ console.log('Space Model');
 // Add Spaces
 export function addNewSpace(newSpace) {
   const exists = model.state.spaces.some(
-    space => space.space.toLowerCase() === newSpace.toLowerCase()
+    space => space.name.toLowerCase() === newSpace.toLowerCase()
   );
   if (exists) return false;
 
   model.state.spaces.push({
-    space: help.capitalize(newSpace),
+    name: help.capitalize(newSpace),
     time: new Date(),
   });
   model.state.selectedSpace = help.capitalize(newSpace);
@@ -22,17 +22,4 @@ export function addNewSpace(newSpace) {
 export function setSelectedSpace(DOMel) {
   const spaceNameEl = DOMel.querySelector('.space--name');
   model.state.selectedSpace = spaceNameEl.textContent;
-}
-
-// Profile logic
-export function profileCardDetails() {
-  return {
-    profileData,
-    profileNameData,
-    numSpacesData,
-    numQueuesData,
-    percentageCompletedData,
-    percentagePendingData,
-    footerData,
-  };
 }

@@ -12,7 +12,10 @@ import * as archiveTasksView from '../views/archiveTasksView.js';
 // Open Form
 const openForm = function () {
   addTaskView.openForm();
-  const { valid, msg } = model.validateInput(addTaskView.getInputValue(), 250);
+  const { valid, msg } = model.validateTaskInput(
+    addTaskView.getInputValue(),
+    250
+  );
   addTaskView.showValidation(valid, msg);
 };
 
@@ -24,14 +27,14 @@ const closeForm = function () {
 
 // Validate input while typing
 const validateTypingInput = function (value) {
-  const { valid, msg } = model.validateInput(value, 250);
+  const { valid, msg } = model.validateTaskInput(value, 250);
   addTaskView.showValidation(valid, msg);
 };
 
 // Add new task
 const addTask = function () {
   const newTask = addTaskView.getInputValue();
-  const { valid } = model.validateInput(newTask, 250);
+  const { valid } = model.validateTaskInput(newTask, 250);
   if (!valid) return;
 
   const success = taskModel.addNewTask(newTask);
@@ -56,8 +59,8 @@ const addTask = function () {
 };
 
 // Edit space name from tasks pane
-const changeSpaceName = function (newName) {
-  taskModel.editeSpaceNameList(newName);
+tabView.editSpaceTitle((oldSpaceName, newSpaceName) => {
+  taskModel.editSpaceName(oldSpaceName, newSpaceName);
 
   tasksView.renderTasks(taskModel.getAllTasks());
   tabView.countAll(taskModel.getAllTasks());
@@ -68,7 +71,7 @@ const changeSpaceName = function (newName) {
 
   // ************* space View ***********************
   spaceView.renderSpaces(model.state.spaces, model.state.tasks);
-};
+});
 
 // Select tab
 const selectTab = function () {
@@ -144,5 +147,4 @@ export function initTasks() {
   addTaskView.onCloseForm(closeForm);
   addTaskView.onAddTask(addTask);
   addTaskView.onInput(validateTypingInput);
-  tabView.editedSpaceName(changeSpaceName);
 }

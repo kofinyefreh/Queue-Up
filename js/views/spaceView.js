@@ -10,7 +10,7 @@ export function renderSpaces(spaces, tasks) {
   spaces.forEach((space, index) => {
     // Count tasks for this space
     const taskCount = tasks.filter(
-      t => t.space.toLowerCase() === space.space.toLowerCase()
+      t => t.space.toLowerCase() === space.name.toLowerCase()
     ).length;
 
     const li = document.createElement('li');
@@ -22,7 +22,7 @@ export function renderSpaces(spaces, tasks) {
 
     li.innerHTML = `
       <div>
-        <p class="space--name">${help.capitalize(space.space)}</p>
+        <p class="space--name">${help.capitalize(space.name)}</p>
         <p class="last--opened">Created ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>

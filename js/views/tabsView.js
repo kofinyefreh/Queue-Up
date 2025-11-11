@@ -1,24 +1,37 @@
 import * as help from '../helpers.js';
 
-const tasksTitle = document.querySelector('.space-title');
+const spaceTitle = document.querySelector('.space-title');
 const tabs = document.querySelector('.tabs');
 const [all, pending, completed, archived] =
   document.querySelectorAll('.tab-num');
 
 // Display Space Name view
 export function showSpaceTitle(selected) {
-  tasksTitle.textContent = '';
-  tasksTitle.textContent = help.capitalize(selected);
+  spaceTitle.textContent = '';
+  spaceTitle.textContent = help.capitalize(selected);
 }
 
 // Edit Space Name View
-export function editedSpaceName(handler) {
-  tasksTitle.addEventListener('keydown', function (e) {
+export function editSpaceTitle(handler) {
+  let oldSpaceName;
+
+  spaceTitle.addEventListener('click', function () {
+    oldSpaceName = help.capitalize(spaceTitle.textContent.trim());
+  });
+
+  spaceTitle.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const newName = tasksTitle.textContent.trim();
-      tasksTitle.textContent = help.capitalize(newName);
-      handler(newName);
+
+      const newSpaceName = help.capitalize(e.target.textContent.trim());
+
+      if (newSpaceName === oldSpaceName) {
+        spaceTitle.blur();
+        spaceTitle.textContent = oldSpaceName;
+        return;
+      }
+
+      handler(oldSpaceName, newSpaceName);
     }
   });
 }

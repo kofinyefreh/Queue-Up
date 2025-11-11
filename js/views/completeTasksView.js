@@ -16,16 +16,20 @@ export const renderCompletedTasks = function (tasks) {
                       </div>
 
                       <p class="task-name ${task.completed && 'strike'}" >
-                        ${help.capitalizeTask(task.taskName)}
+                        ${help.capitalizeTask(task.name)}
                       </p>
                     </span>
                     <div class="task--details">
-                      <p class="date">${help.calcDays(task.time)}</p>
+                    <p class="date"><i class="fa-regular fa-clock"></i>${help.calcDays(
+                      task.time
+                    )}</p>
                       <p class=${task.edited ? 'tag' : 'hidden'}>Edited</p>
                       <p class=${task.archived ? 'tag' : 'hidden'}>Archived</p>
                     </div>
                   </div>
                   <div class="right">
+                    <div class="circle disactive"></div>
+                    <div class="circle disactive"></div>
                   </div>
     `;
 

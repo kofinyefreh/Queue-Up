@@ -12,7 +12,10 @@ console.log('Space Controller');
 // Open Form
 const openForm = function () {
   addSpaceView.openForm();
-  const { valid, msg } = model.validateInput(addSpaceView.getInputValue(), 25);
+  const { valid, msg } = model.validateSpaceInput(
+    addSpaceView.getInputValue(),
+    25
+  );
   addSpaceView.showValidation(valid, msg);
 };
 
@@ -24,14 +27,14 @@ const closeForm = function () {
 
 // Validate input while typing
 const validateTypingInput = function (value) {
-  const { valid, msg } = model.validateInput(value, 25);
+  const { valid, msg } = model.validateSpaceInput(value, 25);
   addSpaceView.showValidation(valid, msg);
 };
 
 // Add new Space
 const addNewSpace = function () {
   const newSpace = addSpaceView.getInputValue();
-  const { valid } = model.validateInput(newSpace, 25);
+  const { valid } = model.validateSpaceInput(newSpace, 25);
 
   if (!valid) return;
   const success = spaceModel.addNewSpace(newSpace);

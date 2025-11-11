@@ -23,7 +23,7 @@ body {
 /* Left pane styling */
 .left--pane {
   position: relative;
-  color: rgb(0, 0, 0, 0.75);
+  color: rgb(0, 0, 0, 0.8);
   border-right: 1.5px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -85,21 +85,21 @@ body {
   align-items: center;
   list-style: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0px;
   padding: 1rem 2rem;
   transition: all 0.3s;
   margin: 0 0.5rem;
 }
 
 .space--item:hover {
-  background-color: rgb(0, 0, 0, 0.5);
-  border-radius: 5px;
-  color: #fff;
+  background-color: rgb(0, 0, 0, 0.05);
+  /* border-radius: 5px; */
+  /* color: #fff; */
 }
 
 .space--name {
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .space--num {
@@ -181,7 +181,7 @@ body {
 .space-title {
   font-size: 2rem;
   outline: none;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .navigation {
@@ -199,9 +199,9 @@ body {
 .tab {
   list-style: none;
   padding: 0.5rem 1.5rem;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.05);
   border-radius: 100px;
-  color: rgb(0, 0, 0, 0.6);
+  color: rgb(0, 0, 0, 0.4);
   cursor: pointer;
   position: relative;
   transition: all 0.3s;
@@ -209,18 +209,18 @@ body {
 }
 
 .tab:hover {
-  background-color: rgb(0, 0, 0, 0.55);
-  color: #fff;
+  background-color: rgb(0, 0, 0, 0.05);
+  /* color: #fff; */
 }
 
 .tab:hover .tab-num {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .tab span {
   position: absolute;
-  top: -1.3rem;
-  right: -1rem;
+  top: -1rem;
+  right: -0.9rem;
 
   border: none;
   box-shadow: 0px 0px 2.5px rgb(0, 0, 0, 0.4);
@@ -264,20 +264,22 @@ body {
   justify-content: space-between;
   flex-grow: 0;
   padding: 2rem;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.8);
   cursor: default;
 }
 
 .task-name {
   font-size: 1.5rem;
   overflow-wrap: break-word;
-  outline-offset: 4px;
+  outline-offset: 2px;
   cursor: auto;
   outline-color: rgb(0, 0, 0, 0.3);
+  line-height: 1.5;
+  margin-right: 0.5rem;
 }
 
 .task:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.015);
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
 .left {
@@ -295,23 +297,27 @@ body {
 
 .task--details {
   font-size: 1.2rem;
-  padding-top: 0.8rem;
+  padding-top: 0.4rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
 .date {
-  font-weight: 400;
+  font-weight: 500;
   margin-left: 2.4rem;
   font-family: monospace;
+  color: rgb(0, 0, 0, 0.6);
+  font-size: 1.1rem;
+  display: flex;
+  gap: 0.3rem;
 }
 
 .tag {
   font-size: 1rem;
   color: #fff;
   background-color: rgb(0, 0, 0, 0.6);
-  padding: 0.2rem 0.5rem;
+  padding: 0.15rem 0.45rem;
   border-radius: 2px;
   font-family: monospace;
 }
@@ -420,6 +426,7 @@ body {
   right: 0px;
 }
 
+/* Profile screen styling */
 .profile-screen {
   position: fixed;
   top: 50%;

@@ -53,7 +53,7 @@ export function renderAddedSpaces(spaces, tasks) {
   if (!spaces) return;
   spaces.forEach((space, index) => {
     // Count tasks for this space
-    const taskCount = tasks.filter(t => t.space === space.space).length;
+    const taskCount = tasks.filter(t => t.space === space.name).length;
 
     const li = document.createElement('li');
     li.className = `space--item item--${index}`;
@@ -61,14 +61,14 @@ export function renderAddedSpaces(spaces, tasks) {
 
     li.innerHTML = `
       <div>
-        <p class="space--name">${help.capitalize(space.space)}</p>
+        <p class="space--name">${help.capitalize(space.name)}</p>
         <p class="last--opened">Created ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>
     `;
 
     spacesList.appendChild(li);
-    li.setAttribute('data-space', space.space);
+    li.setAttribute('data-space', space.name);
   });
 }
 
