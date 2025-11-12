@@ -30,7 +30,7 @@ export function calcDays(date) {
 }
 
 // Creating profile Name abbr
-export function profile(profileName) {
+export function profileAbbr(profileName) {
   const array = profileName.split(' ');
   if (array.length > 1) {
     const abbr = array.map(word => word.at(0).toUpperCase());

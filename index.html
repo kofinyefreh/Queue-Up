@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
 
@@ -24,9 +24,7 @@
 
     <script src="js/controllers/appController.js" type="module" defer></script>
 
-    <title>
-      Queue Up | Become more productive by knowing the tasks ahead of you!
-    </title>
+    <title>Queue Up | Know your tasks, Become more productive!</title>
   </head>
 
   <body>
@@ -35,8 +33,7 @@
         <!-- left pane -->
         <section class="left--pane">
           <div class="left--top">
-            <h2 class="logo"><span>Q</span>ueue UP</h2>
-            <p class="profile"><span>KN</span></p>
+            <a class="logo" href="#">Queue up</a>
           </div>
 
           <div class="container">
@@ -55,7 +52,7 @@
                   <p class="space-text check--input">Not more than 25 chars</p>
                   <input
                     type="text"
-                    placeholder="Create Space"
+                    placeholder="Create Space (Ctrl + S)"
                     class="space--input"
                   />
                 </div>
@@ -106,7 +103,7 @@
                     <p class="task-text check--input">Not more than 25 chars</p>
                     <input
                       type="text"
-                      placeholder="Create Queue"
+                      placeholder="Create Queue (Ctrl + Q)"
                       class="task--input"
                     />
                   </div>
@@ -141,12 +138,12 @@
             </div>
 
             <div class="profile-details">
-              <input type="text" value="Kofi Nyefreh" />
+              <input type="text" value="New User" class="profile-full-name" />
               <p class="profile-description">
                 You have <span class="num-spaces">40</span> spaces created,
                 <span class="num-queues">80</span> queues created in total,
-                <span class="percentage-completed">56%</span> completed, and
-                <span class="percentage-pending">44%</span> pending queues!
+                <span class="percentage-completed">56</span>% completed, and
+                <span class="percentage-pending">44</span>% pending queues!
               </p>
             </div>
           </div>
@@ -171,13 +168,5 @@
         <div class="profile-overlay hidden"></div>
       </div>
     </main>
-
-    <!-- <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam beatae
-      nobis, eius sed, aliquid nemo itaque ut temporibus nulla perspiciatis
-      rerum, ab sit tenetur quibusdam est? Voluptates debitis laudantium eius
-      animi, autem officiis sint commodi fuga? Ea aut consectetur aspernatur, a
-      officia quaerat eligendi quae veniam temporibus animi, natus quisquam!
-    </p> -->
   </body>
 </html>

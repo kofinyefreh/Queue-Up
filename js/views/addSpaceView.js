@@ -62,7 +62,7 @@ export function renderAddedSpaces(spaces, tasks) {
     li.innerHTML = `
       <div>
         <p class="space--name">${help.capitalize(space.name)}</p>
-        <p class="last--opened">Created ${help.calcDays(space.time)}</p>
+        <p class="last--opened">Active: ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>
     `;
@@ -75,10 +75,21 @@ export function renderAddedSpaces(spaces, tasks) {
 // Events
 export function onOpenForm(handler) {
   openFormBtn.addEventListener('click', handler);
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey && e.key === 's') || (e.ctrlKey && e.key === 'S')) {
+      e.preventDefault();
+      handler();
+    }
+  });
 }
 
 export function onCloseForm(handler) {
   spaceOverlay.addEventListener('click', handler);
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      handler();
+    }
+  });
 }
 
 export function onInput(handler) {
@@ -87,4 +98,10 @@ export function onInput(handler) {
 
 export function onAddSpace(handler) {
   addFormBtn.addEventListener('click', e => handler(e));
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  });
 }

@@ -5,6 +5,8 @@ import * as taskView from '../views/tasksView.js';
 import * as addSpaceView from '../views/addSpaceView.js';
 import * as selectSpaceView from '../views/selectSpaceView.js';
 import * as tabView from '../views/tabsView.js';
+import * as profileView from '../views/profileView.js';
+// import { profile } from '../helpers.js';
 
 console.log('Space Controller');
 
@@ -73,6 +75,20 @@ const selectSpaceController = function (clicked) {
   tabView.countPending(taskModel.getPendingTasks());
   tabView.countCompleted(taskModel.getCompletedTasks());
   tabView.countArchived(taskModel.getArchivedTasks());
+};
+
+// Profile View
+const showProfile = function () {
+  profileView.UpdateProfileView(spaceModel.profileUpdater());
+};
+
+const profileOpen = function () {
+  profileView.openProfile();
+  showProfile();
+};
+
+const profileClose = function () {
+  profileView.closeProfile();
 };
 
 export function initSpaces() {

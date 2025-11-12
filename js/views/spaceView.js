@@ -23,7 +23,7 @@ export function renderSpaces(spaces, tasks) {
     li.innerHTML = `
       <div>
         <p class="space--name">${help.capitalize(space.name)}</p>
-        <p class="last--opened">Created ${help.calcDays(space.time)}</p>
+        <p class="last--opened">Active: ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>
     `;

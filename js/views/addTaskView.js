@@ -47,10 +47,20 @@ export function getInputValue() {
 // Event bindings (Controller attaches handlers here)
 export function onOpenForm(handler) {
   openFormBtn.addEventListener('click', handler);
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey && e.key === 'q') || (e.ctrlKey && e.key === 'Q')) {
+      handler();
+    }
+  });
 }
 
 export function onCloseForm(handler) {
   taskOverlay.addEventListener('click', handler);
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      handler();
+    }
+  });
 }
 
 export function onInput(handler) {
@@ -59,4 +69,10 @@ export function onInput(handler) {
 
 export function onAddTask(handler) {
   addFormBtn.addEventListener('click', e => handler(e));
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  });
 }

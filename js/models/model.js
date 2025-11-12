@@ -7,8 +7,8 @@ export const state = {
   selectedTask: null,
   spaces: [],
   tasks: [],
-  profileName: 'New User',
-  accountDate: null,
+  profileName: 'User',
+  accountDate: new Date(),
 };
 
 // validate input logic

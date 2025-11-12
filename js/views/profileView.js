@@ -1,23 +1,31 @@
-const profile = document.querySelector('.profile');
+const profileDom = document.querySelector('.profile');
 const profileScreen = document.querySelector('.profile-screen');
 const profileOverlay = document.querySelector('.profile-overlay');
-const profileName = document.querySelector('.profile-name');
+const profileNameDom = document.querySelector('.profile-name');
 const numSpaces = document.querySelector('.num-spaces');
 const numQueues = document.querySelector('.num-queues');
 const completedPercentage = document.querySelector('.percentage-completed');
 const pendingPercentage = document.querySelector('.percentage-pending');
 const accountDate = document.querySelector('.account-date');
+const profileFullName = document.querySelector('.profile-full-name');
 
-export function UpdateProfileView(handler) {
-  handler(
-    profile,
-    profileName,
-    numSpaces,
-    numQueues,
-    completedPercentage,
-    pendingPercentage,
-    accountDate
-  );
+export function UpdateProfileView({
+  profile,
+  profileName,
+  Spaces,
+  Queues,
+  percentageCompleted,
+  percentagePending,
+  accountDate,
+}) {
+  profileDom.textContent = profile;
+  profileNameDom.textContent = profile;
+  profileFullName.value = profileName;
+  numSpaces.textContent = Spaces;
+  numQueues.textContent = Queues;
+  completedPercentage.textContent = percentageCompleted;
+  pendingPercentage.textContent = percentagePending;
+  accountDate.textContent = accountDate;
 }
 
 export function openProfile() {
@@ -30,13 +38,14 @@ export function closeProfile() {
   profileOverlay.classList.add('hidden');
 }
 
+// Event Listeners
 export function onOpenProfile(handler) {
-  profile.addEventListener('click', function () {
+  profileDom.addEventListener('click', function () {
     handler();
   });
 }
 
-export function CloseProfile(handler) {
+export function onCloseProfile(handler) {
   profileOverlay.addEventListener('click', function () {
     handler();
   });

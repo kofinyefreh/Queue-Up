@@ -16,11 +16,13 @@ html {
 .selected-tab {
   background-color: rgb(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.7);
+  font-weight: 450;
 }
 
 .selected {
   background-color: rgb(0, 0, 0, 0.05);
-  border-left: 2px solid rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border-left: 3px solid rgba(0, 0, 0, 0.35);
 }
 
 .selected-tab .tab-num {
@@ -28,10 +30,6 @@ html {
 }
 
 .hidden {
-  /* transform: translateY(10rem); */
-  /* opacity: 0;
-  transition: all 0.2s;
-  z-index: -100; */
   display: none;
 }
 
