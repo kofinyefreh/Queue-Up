@@ -38,6 +38,7 @@ const addNewSpace = function () {
 
   if (!valid) return;
   const success = spaceModel.addNewSpace(newSpace);
+
   if (!success) {
     alert(`${newSpace} already exists!`);
     addSpaceView.openForm();

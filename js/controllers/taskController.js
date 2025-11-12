@@ -44,14 +44,15 @@ const addTask = function () {
     return;
   }
 
+  addTaskView.clearInput();
+  addTaskView.closeForm();
+
   tasksView.renderTasks(taskModel.getAllTasks());
   tabView.countAll(taskModel.getAllTasks());
   tabView.countPending(taskModel.getPendingTasks());
   tabView.countCompleted(taskModel.getCompletedTasks());
   tabView.countArchived(taskModel.getArchivedTasks());
   tabView.defaultTab();
-
-  addTaskView.clearInput();
   addTaskView.closeForm();
 
   // **************************** Space View **************************

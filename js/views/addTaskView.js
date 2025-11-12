@@ -9,7 +9,7 @@ const validText = document.querySelector('.task-text');
 export function openForm() {
   addFormBtn.classList.remove('hidden');
   openFormBtn.classList.add('hidden');
-  form.classList.replace('hidden', 'block-space-input');
+  form.classList.replace('hidden', 'block-task-input');
   taskOverlay.classList.remove('hidden');
   input.focus();
 }
@@ -17,8 +17,9 @@ export function openForm() {
 export function closeForm() {
   addFormBtn.classList.add('hidden');
   openFormBtn.classList.remove('hidden');
-  form.classList.replace('block-space-input', 'hidden');
+  form.classList.replace('block-task-input', 'hidden');
   taskOverlay.classList.add('hidden');
+  console.log('closes form');
 }
 
 export function showValidation(valid, msg) {
@@ -47,10 +48,18 @@ export function getInputValue() {
 // Event bindings (Controller attaches handlers here)
 export function onOpenForm(handler) {
   openFormBtn.addEventListener('click', handler);
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey && e.key === 'Q') || (e.ctrlKey && e.key === 'q')) {
+      handler();
+    }
+  });
 }
 
 export function onCloseForm(handler) {
   taskOverlay.addEventListener('click', handler);
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') return handler();
+  });
 }
 
 export function onInput(handler) {
@@ -58,5 +67,11 @@ export function onInput(handler) {
 }
 
 export function onAddTask(handler) {
-  addFormBtn.addEventListener('click', e => handler(e));
+  addFormBtn.addEventListener('click', e => handler());
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  });
 }
