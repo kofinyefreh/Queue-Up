@@ -75,19 +75,10 @@ export function renderAddedSpaces(spaces, tasks) {
 // Events
 export function onOpenForm(handler) {
   openFormBtn.addEventListener('click', handler);
-  document.addEventListener('keydown', function (e) {
-    if ((e.ctrlKey && e.key === 's') || (e.ctrlKey && e.key === 'S')) {
-      e.preventDefault();
-      handler();
-    }
-  });
 }
 
 export function onCloseForm(handler) {
   spaceOverlay.addEventListener('click', handler);
-  form.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') return handler();
-  });
 }
 
 export function onInput(handler) {
@@ -95,11 +86,5 @@ export function onInput(handler) {
 }
 
 export function onAddSpace(handler) {
-  addFormBtn.addEventListener('click', e => handler());
-  form.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handler();
-    }
-  });
+  addFormBtn.addEventListener('click', e => handler(e));
 }
