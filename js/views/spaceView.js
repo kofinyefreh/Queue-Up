@@ -15,10 +15,7 @@ export function renderSpaces(spaces, tasks) {
 
     const li = document.createElement('li');
     li.className = `space--item item--${index}`;
-    li.setAttribute('data-space', space.space);
-
-    if (selectedSpace.classList.contains(`item--${index}`))
-      li.classList.add('selected');
+    li.setAttribute('data-space', space.name);
 
     li.innerHTML = `
       <div>
@@ -29,6 +26,11 @@ export function renderSpaces(spaces, tasks) {
     `;
     spacesList.appendChild(li);
 
-    // li.scrollIntoView({ behavior: 'smooth' });
+    if (
+      selectedSpace !== null &&
+      selectedSpace.classList.contains(`item--${index}`)
+    ) {
+      li.classList.add('selected');
+    }
   });
 }

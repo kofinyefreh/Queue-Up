@@ -17,7 +17,7 @@ export function addNewTask(newTask) {
     // ID : ### Fix me later ###
     id: Date.now(),
     name: help.capitalizeTask(newTask),
-    time: new Date(),
+    time: Date.now(),
     archived: false,
     completed: false,
     space: model.state.selectedSpace,
@@ -25,6 +25,8 @@ export function addNewTask(newTask) {
   });
 
   model.state.selectedTab = 'all';
+
+  model.setLocalStorage();
   return model.state.tasks;
 }
 
@@ -49,7 +51,10 @@ export function editSpaceName(oldSpaceName, newSpaceName) {
   const alreadyExists = model.state.spaces.some(
     space => space.name === newSpaceName
   );
-  if (alreadyExists) return alert(`${newSpaceName} already exists in spaces`);
+  if (alreadyExists) {
+    alert(`${newSpaceName} already exists in spaces`);
+    return;
+  }
 
   const selSpace = model.state.spaces.find(
     space => space.name === oldSpaceName
@@ -62,12 +67,15 @@ export function editSpaceName(oldSpaceName, newSpaceName) {
   selSpace.name = newSpaceName;
   spaceTasks.forEach(task => (task.space = newSpaceName));
   model.state.selectedSpace = newSpaceName;
+
+  model.setLocalStorage();
 }
 
 ///////////////////////////////////////////////////////////////////
 // Select task tab
 export function activeTab(selecedTab) {
   model.state.selectedTab = selecedTab;
+  model.setLocalStorage();
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -111,6 +119,7 @@ export function activateTaskProperty(taskName, property) {
   );
 
   if (activeTask) activeTask[property] = !activeTask[property];
+  model.setLocalStorage();
   return activeTask[property];
 }
 
@@ -122,6 +131,7 @@ export function deleteTask(taskName) {
   );
 
   model.state.tasks.splice(activeTask, 1);
+  model.setLocalStorage();
   return activeTask;
 }
 
@@ -146,4 +156,5 @@ export function editTaskName(oldTaskName, newTaskName) {
 
   oldTask.name = newTaskName;
   oldTask.edited = true;
+  model.setLocalStorage();
 }

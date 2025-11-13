@@ -35,8 +35,5 @@ export const renderCompletedTasks = function (tasks) {
 
     li.classList.add('task', `${index}`);
     taskList.appendChild(li);
-
-    // Scroll first element into view
-    // li.scrollIntoView(/*{ behavior: 'smooth' }*/);
   });
 };

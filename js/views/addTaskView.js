@@ -68,7 +68,10 @@ export function onInput(handler) {
 }
 
 export function onAddTask(handler) {
-  addFormBtn.addEventListener('click', e => handler(e));
+  addFormBtn.addEventListener('click', e => {
+    e.preventDefault();
+    handler(e);
+  });
   form.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
       e.preventDefault();

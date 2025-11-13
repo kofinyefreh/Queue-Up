@@ -3,12 +3,9 @@ import * as spaceModel from '../models/spaceModel.js';
 import * as taskModel from '../models/taskModel.js';
 import * as taskView from '../views/tasksView.js';
 import * as addSpaceView from '../views/addSpaceView.js';
+import * as spaceView from '../views/spaceView.js';
 import * as selectSpaceView from '../views/selectSpaceView.js';
 import * as tabView from '../views/tabsView.js';
-import * as profileView from '../views/profileView.js';
-// import { profile } from '../helpers.js';
-
-console.log('Space Controller');
 
 // //////////////////////////////////// Add Spaces
 // Open Form
@@ -77,22 +74,8 @@ const selectSpaceController = function (clicked) {
   tabView.countArchived(taskModel.getArchivedTasks());
 };
 
-// Profile View
-const showProfile = function () {
-  profileView.UpdateProfileView(spaceModel.profileUpdater());
-};
-
-const profileOpen = function () {
-  profileView.openProfile();
-  showProfile();
-};
-
-const profileClose = function () {
-  profileView.closeProfile();
-};
-
 export function initSpaces() {
-  addSpaceView.renderAddedSpaces(model.state.spaces, model.state.tasks);
+  spaceView.renderSpaces(model.state.spaces, model.state.tasks);
   addSpaceView.onOpenForm(openForm);
   addSpaceView.onCloseForm(closeForm);
   addSpaceView.onAddSpace(addNewSpace);

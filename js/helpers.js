@@ -28,15 +28,3 @@ export function calcDays(date) {
   if (days > 1 && days <= 30) return `${days} DAYS AGO`;
   if (days > 30) return formatDate(date);
 }
-
-// Creating profile Name abbr
-export function profileAbbr(profileName) {
-  const array = profileName.split(' ');
-  if (array.length > 1) {
-    const abbr = array.map(word => word.at(0).toUpperCase());
-    return abbr.slice(0, 2).join('');
-  } else if ((array.length = 1)) {
-    const abbr = array.map(word => word.at(0).toUpperCase());
-    return abbr.at(0);
-  }
-}

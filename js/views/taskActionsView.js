@@ -66,6 +66,4 @@ export function editTask(handler) {
       }
     });
   });
-
-  // if (!selectedTask) return;
 }

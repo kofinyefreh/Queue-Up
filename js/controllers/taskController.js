@@ -142,7 +142,6 @@ taskActionsView.editTask((oldTaskName, newTaskName) => {
 });
 
 export function initTasks() {
-  tasksView.renderTasks(taskModel.getSelectedTasks());
   addTaskView.onOpenForm(openForm);
   addTaskView.onCloseForm(closeForm);
   addTaskView.onAddTask(addTask);

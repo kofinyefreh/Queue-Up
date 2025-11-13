@@ -24,13 +24,13 @@ export function editSpaceTitle(handler) {
       e.preventDefault();
 
       const newSpaceName = help.capitalize(e.target.textContent.trim());
+      spaceTitle.textContent = help.capitalize(newSpaceName);
 
       if (newSpaceName === oldSpaceName) {
         spaceTitle.blur();
         spaceTitle.textContent = oldSpaceName;
         return;
       }
-
       handler(oldSpaceName, newSpaceName);
     }
   });

@@ -14,15 +14,15 @@ html {
 /* Utility Classes */
 
 .selected-tab {
-  background-color: rgb(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.7);
+  background-color: rgb(0, 0, 0, 0.7);
+  color: white;
   font-weight: 450;
 }
 
 .selected {
-  background-color: rgb(0, 0, 0, 0.05);
+  background-color: rgb(0, 0, 0, 0.7);
   border-radius: 8px;
-  border-left: 3px solid rgba(0, 0, 0, 0.35);
+  color: white;
 }
 
 .selected-tab .tab-num {

@@ -1,15 +1,27 @@
 import * as help from '../helpers.js';
 console.log('Model.js');
 
-export const state = {
+export let state = {
   selectedSpace: null,
   selectedTab: 'all',
   selectedTask: null,
   spaces: [],
   tasks: [],
-  profileName: 'User',
-  accountDate: new Date(),
 };
+
+// Set local storage
+export function setLocalStorage() {
+  localStorage.setItem('state', JSON.stringify(state));
+}
+
+// Get local storage function
+export function getLocalStorage() {
+  return JSON.parse(localStorage.getItem('state'));
+}
+
+// Init local storage
+if (localStorage.length === 0) setLocalStorage();
+else state = getLocalStorage();
 
 // validate input logic
 export function validateSpaceInput(value, num) {

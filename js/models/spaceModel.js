@@ -12,9 +12,10 @@ export function addNewSpace(newSpace) {
 
   model.state.spaces.push({
     name: help.capitalize(newSpace),
-    time: new Date(),
+    time: Date.now(),
   });
   model.state.selectedSpace = help.capitalize(newSpace);
+  model.setLocalStorage();
   return model.state.spaces;
 }
 
@@ -22,40 +23,5 @@ export function addNewSpace(newSpace) {
 export function setSelectedSpace(DOMel) {
   const spaceNameEl = DOMel.querySelector('.space--name');
   model.state.selectedSpace = spaceNameEl.textContent;
-}
-
-// Profile Logic
-export function profileUpdater() {
-  const completedNum = model.state.tasks.filter(
-    task => task.completed === true
-  ).length;
-  console.log(completedNum);
-
-  const profile = help.profileAbbr(model.state.profileName);
-  const profileName = model.state.profileName;
-  const Spaces = model.state.spaces.length;
-  const Queues = model.state.tasks.length;
-  const percentageCompleted = (Queues / completedNum) * 100;
-  const percentagePending = 100 - percentageCompleted;
-  const accountDate = model.state.accountDate;
-
-  console.log({
-    profile,
-    profileName,
-    Spaces,
-    Queues,
-    percentageCompleted,
-    percentagePending,
-    accountDate,
-  });
-
-  return {
-    profile,
-    profileName,
-    Spaces,
-    Queues,
-    percentageCompleted,
-    percentagePending,
-    accountDate,
-  };
+  model.setLocalStorage();
 }
