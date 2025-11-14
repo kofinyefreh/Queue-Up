@@ -1,0 +1,15 @@
+# -------------------------
+# Parcel Cache & Build
+# -------------------------
+.parcel-cache/
+dist/
+
+# -------------------------
+# Node & Dependencies
+# -------------------------
+node_modules/
+
+
+# VSCode
+.vscode/
+*.code-workspace

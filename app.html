@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/utils.css" />
+    <link rel="shortcut icon" href="./images/favicon.png" type="images/png" />
+
+    <script src="js/controllers/appController.js" type="module" defer></script>
+
+    <title>Queue Up | Know your tasks, Become more productive!</title>
+  </head>
+
+  <body>
+    <main>
+      <div class="section">
+        <!-- left pane -->
+        <section class="left--pane">
+          <div class="left--top">
+            <a class="logo" href="index.html">Queue up</a>
+          </div>
+
+          <div class="container">
+            <div class="display--spaces">
+              <ul class="spaces--list">
+                <!-- Content from JS -->
+              </ul>
+            </div>
+            <!-- Overlay -->
+            <div class="overlay hidden"></div>
+
+            <!-- Form to input space -->
+            <div class="form--space">
+              <form action="#">
+                <div class="form hidden">
+                  <p class="space-text check--input">Not more than 25 chars</p>
+                  <input
+                    type="text"
+                    placeholder="Create Space (Ctrl + S)"
+                    class="space--input"
+                  />
+                </div>
+              </form>
+            </div>
+
+            <div class="buttons space-buttons">
+              <button class="btn btn--1 open--space">+</button>
+              <button type="submit" class="btn btn--1 add--space hidden">
+                <i class="fa-solid fa-check tick"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------------------------------------------------------------------------- -->
+        <!-- Right Section of App -->
+        <section class="right--pane">
+          <nav class="nav-bar">
+            <p class="title">
+              #
+              <span contenteditable="true" class="space-title"></span>
+            </p>
+
+            <div class="navigation">
+              <ul class="tabs">
+                <li class="tab selected-tab" data-tab="all">
+                  <p class="tab-name">All Tasks</p>
+                  <span class="tab-num">0</span>
+                </li>
+                <li class="tab" data-tab="pending">
+                  <p class="tab-name">Pending</p>
+                  <span class="tab-num">0</span>
+                </li>
+                <li class="tab" data-tab="completed">
+                  <p class="tab-name">Completed</p>
+                  <span class="tab-num">0</span>
+                </li>
+                <li class="tab" data-tab="archived">
+                  <p class="tab-name">Archived</p>
+                  <span class="tab-num">0</span>
+                </li>
+              </ul>
+
+              <div>
+                <form action="#">
+                  <div class="form--task hidden">
+                    <p class="task-text check--input">Not more than 25 chars</p>
+                    <input
+                      type="text"
+                      placeholder="Create Queue (Ctrl + Q)"
+                      class="task--input"
+                    />
+                  </div>
+
+                  <div class="buttons">
+                    <button class="btn btn--2 open--task">+</button>
+                    <button type="submit" class="btn btn--2 add--task hidden">
+                      <i class="fa-solid fa-check tick"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </nav>
+
+          <div class="display--tasks">
+            <!-- Overlay -->
+            <div class="overlay hidden"></div>
+            <div>
+              <ul class="task-list">
+                <!-- Content From JS -->
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Profile section -->
+        <div class="profile-screen hidden">
+          <div class="inner-profile-screen">
+            <div class="profile-circle">
+              <p class="profile-name">KN</p>
+            </div>
+
+            <div class="profile-details">
+              <input type="text" value="New User" class="profile-full-name" />
+              <p class="profile-description">
+                You have <span class="num-spaces">40</span> spaces created,
+                <span class="num-queues">80</span> queues created in total,
+                <span class="percentage-completed">56</span>% completed, and
+                <span class="percentage-pending">44</span>% pending queues!
+              </p>
+            </div>
+          </div>
+          <p class="profile-footer">
+            This Account was Created On: December 30, 2025
+          </p>
+        </div>
+
+        <!-- Notification popup section -->
+        <div class="notification-screen hidden">
+          <div class="main-content">
+            <p>
+              <span>!</span
+              ><span class="content"
+                >'The content i want to enter is not valid'</span
+              >
+              already exists
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-overlay hidden"></div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "queue-up",
+  "version": "1.0.0",
+  "description": "This is no ordinary todo application, this one has a lot of functionalities similar to notion.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kofinyefreh/Queue-up-.git"
+  },
+  "keywords": [],
+  "author": "Kofi Nyefreh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kofinyefreh/Queue-up-/issues"
+  },
+  "homepage": "https://github.com/kofinyefreh/Queue-up-#readme",
+  "devDependencies": {
+    "parcel": "^2.16.1"
+  }
+}

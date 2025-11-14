@@ -15,158 +15,208 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap"
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/utils.css" />
-
-    <script src="js/controllers/appController.js" type="module" defer></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./images/favicon.png" type="images/png" />
+    <script src="index.js" type="module" defer></script>
 
     <title>Queue Up | Know your tasks, Become more productive!</title>
   </head>
-
   <body>
-    <main>
-      <div class="section">
-        <!-- left pane -->
-        <section class="left--pane">
-          <div class="left--top">
-            <a class="logo" href="#">Queue up</a>
-          </div>
+    <!-- Header -->
+    <header class="header container">
+      <nav class="navigation">
+        <div class="logo">Queue up</div>
+      </nav>
+      <a href="app.html" class="button">Use Now</a>
+    </header>
 
-          <div class="container">
-            <div class="display--spaces">
-              <ul class="spaces--list">
-                <!-- Content from JS -->
-              </ul>
-            </div>
-            <!-- Overlay -->
-            <div class="overlay hidden"></div>
+    <!-- Hero Section -->
+    <section class="container">
+      <div class="hero">
+        <h1 class="main-text">
+          Organize it all with <span class="style">Queue up</span> One space at
+          a time
+        </h1>
+        <p class="primary-text">
+          Queue up is your all-in-one task management tool — designed to keep
+          your personal and work life structured. Create spaces, manage tasks
+          (queues), track your progress, and never lose a thing — all powered by
+          your browser's local storage.
+        </p>
+        <a href="app.html" class="button">Use Now</a>
+      </div>
+    </section>
 
-            <!-- Form to input space -->
-            <div class="form--space">
-              <form action="#">
-                <div class="form hidden">
-                  <p class="space-text check--input">Not more than 25 chars</p>
-                  <input
-                    type="text"
-                    placeholder="Create Space (Ctrl + S)"
-                    class="space--input"
-                  />
-                </div>
-              </form>
-            </div>
+    <section class="image-container container">
+      <img src="images/image1.png" alt="product image" class="image" />
+    </section>
 
-            <div class="buttons space-buttons">
-              <button class="btn btn--1 open--space">+</button>
-              <button type="submit" class="btn btn--1 add--space hidden">
-                <i class="fa-solid fa-check tick"></i>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- ---------------------------------------------------------------------------- -->
-        <!-- Right Section of App -->
-        <section class="right--pane">
-          <nav class="nav-bar">
-            <p class="title">
-              #
-              <span contenteditable="true" class="space-title"></span>
+    <!-- Feature section -->
+    <section class="container features">
+      <div>
+        <p class="sub-heading">Powerful Features</p>
+        <h2 class="section-heading">
+          -- Turn on your productivity mode<span class="dot">.</span> --
+        </h2>
+        <div class="grid">
+          <div class="grid-item grid-1">
+            <h3>Edit Spaces</h3>
+            <p>
+              Group your queues by themes or projects — whether it's “Personal”,
+              “Work”, or “Fitness Goals”. Each space gives you a clean slate to
+              stay focused on what matters.
             </p>
+          </div>
+          <div class="grid-item grid-2">
+            <h3>Add & Manage Queues</h3>
+            <p>
+              Create new queues in seconds. Assign them to spaces, set details,
+              and mark them when done. Keep your life flowing — one queue at a
+              time.
+            </p>
+          </div>
+          <div class="grid-item grid-3">
+            <h3>Edit Anytime</h3>
+            <p>
+              Plans change? Edit queue details instantly without losing track of
+              your progress.
+            </p>
+          </div>
+          <div class="grid-item grid-4">
+            <h3>View Pending Queues</h3>
+            <p>
+              Stay on top of what's due. All your pending queues are displayed
+              clearly so you can focus your energy wisely.
+            </p>
+          </div>
+          <div class="grid-item grid-5">
+            <h3>Archived Queues</h3>
+            <p>
+              Keep your workspace clutter-free by archiving old or postponed
+              tasks — they'll always be there when you need them back.
+            </p>
+          </div>
+          <div class="grid-item grid-6">
+            <h3>Completed Queues</h3>
+            <p>
+              Celebrate your wins! Access your completed queues to see how much
+              you've achieved over time.
+            </p>
+          </div>
+          <div class="grid-item grid-7">
+            <h3>Local Storage Powered</h3>
+            <p>
+              No sign-ups, no servers, no stress — everything is securely stored
+              in your browser. Your data, your privacy, your control.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="navigation">
-              <ul class="tabs">
-                <li class="tab selected-tab" data-tab="all">
-                  <p class="tab-name">All Tasks</p>
-                  <span class="tab-num">0</span>
-                </li>
-                <li class="tab" data-tab="pending">
-                  <p class="tab-name">Pending</p>
-                  <span class="tab-num">0</span>
-                </li>
-                <li class="tab" data-tab="completed">
-                  <p class="tab-name">Completed</p>
-                  <span class="tab-num">0</span>
-                </li>
-                <li class="tab" data-tab="archived">
-                  <p class="tab-name">Archived</p>
-                  <span class="tab-num">0</span>
-                </li>
-              </ul>
-
-              <div>
-                <form action="#">
-                  <div class="form--task hidden">
-                    <p class="task-text check--input">Not more than 25 chars</p>
-                    <input
-                      type="text"
-                      placeholder="Create Queue (Ctrl + Q)"
-                      class="task--input"
-                    />
-                  </div>
-
-                  <div class="buttons">
-                    <button class="btn btn--2 open--task">+</button>
-                    <button type="submit" class="btn btn--2 add--task hidden">
-                      <i class="fa-solid fa-check tick"></i>
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </nav>
-
-          <div class="display--tasks">
-            <!-- Overlay -->
-            <div class="overlay hidden"></div>
-            <div>
-              <ul class="task-list">
-                <!-- Content From JS -->
-              </ul>
+    <!-- how it works section -->
+    <section class="container works">
+      <div>
+        <p class="sub-heading">Embrace the flow</p>
+        <h2 class="section-heading">
+          -- Get started in 3 simple steps<span class="dot">.</span> --
+        </h2>
+        <div class="steps">
+          <div class="step-numbers number-1">
+            <p class="number">1</p>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+          <div class="step-1">
+            <div class="content">
+              <h3 class="step-title">Create a Space (Ctrl + S)</h3>
+              <p class="step-content">Organize your goals into workspaces.</p>
             </div>
           </div>
-        </section>
-
-        <!-- Profile section -->
-        <div class="profile-screen hidden">
-          <div class="inner-profile-screen">
-            <div class="profile-circle">
-              <p class="profile-name">KN</p>
-            </div>
-
-            <div class="profile-details">
-              <input type="text" value="New User" class="profile-full-name" />
-              <p class="profile-description">
-                You have <span class="num-spaces">40</span> spaces created,
-                <span class="num-queues">80</span> queues created in total,
-                <span class="percentage-completed">56</span>% completed, and
-                <span class="percentage-pending">44</span>% pending queues!
+          <div class="step-2">
+            <div class="content">
+              <h3 class="step-title">Add Queues (Ctrl + Q)</h3>
+              <p class="step-content">
+                Break down your big ideas into actionable steps.
               </p>
             </div>
           </div>
-          <p class="profile-footer">
-            This Account was Created On: December 30, 2025
-          </p>
-        </div>
-
-        <!-- Notification popup section -->
-        <div class="notification-screen hidden">
-          <div class="main-content">
-            <p>
-              <span>!</span
-              ><span class="content"
-                >'The content i want to enter is not valid'</span
-              >
-              already exists
-            </p>
+          <div class="step-numbers number-2">
+            <p class="number">2</p>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+          <div class="step-numbers number-3">
+            <p class="number">3</p>
+          </div>
+          <div class="step-3">
+            <div class="content">
+              <h3 class="step-title">Track Progress</h3>
+              <p class="step-content">
+                View pending, completed, and archived tasks anytime.
+              </p>
+            </div>
           </div>
         </div>
-
-        <div class="profile-overlay hidden"></div>
       </div>
-    </main>
+    </section>
+
+    <!-- About sections -->
+    <section class="container about">
+      <div>
+        <p class="sub-heading">Why Our Platform</p>
+        <h2 class="section-heading">
+          -- Know more about Queue Up<span class="dot">.</span> --
+        </h2>
+        <div class="about-text">
+          <p>
+            Simplicity meets efficiency. Queue Up combines a minimalist design
+            with powerful task (queue) organization tools. It's fast,
+            offline-ready, and designed to help you think less and do more.
+          </p>
+          <a href="app.html" class="button">Use Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container footer">
+      <p class="logo">Queue up</p>
+      <footer>
+        <!-- <p class="logo">Queue up</p> -->
+        <p class="whatsapp icon">
+          <a href="https://wa.me/message/ZP6KCR6A7B6VJ1" target="_blank"
+            ><i class="fa-brands fa-whatsapp"></i
+          ></a>
+        </p>
+        <p class="linkedIn icon">
+          <a
+            href="https://www.linkedin.com/in/kofinyefreh?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            target="_blank"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+        </p>
+
+        <p class="github icon">
+          <a href="https://github.com/kofinyefreh" target="_blank">
+            <i class="fa-brands fa-github"></i
+          ></a>
+        </p>
+        <p class="instagram icon">
+          <a href="https://ig.me/m/kofinyefreh" target="_blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+        </p>
+        <p class="x icon">
+          <a href="https://x.com/kofi_nyefreh" target="_blank">
+            <i class="fa-brands fa-x-twitter"></i
+          ></a>
+        </p>
+      </footer>
+      <p class="footer-text">Copyright &copy; 2025, All Right Reserved</p>
+    </section>
   </body>
 </html>
