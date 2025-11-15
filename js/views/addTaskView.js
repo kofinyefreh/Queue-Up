@@ -46,9 +46,14 @@ export function getInputValue() {
 
 // Event bindings (Controller attaches handlers here)
 export function onOpenForm(handler) {
-  openFormBtn.addEventListener('click', handler);
+  openFormBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    handler();
+  });
+
   document.addEventListener('keydown', function (e) {
     if ((e.ctrlKey && e.key === 'q') || (e.ctrlKey && e.key === 'Q')) {
+      e.preventDefault();
       handler();
     }
   });
