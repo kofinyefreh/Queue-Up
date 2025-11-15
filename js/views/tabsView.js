@@ -4,7 +4,9 @@ const spaceTitle = document.querySelector('.space-title');
 const tabs = document.querySelector('.tabs');
 const [all, pending, completed, archived] =
   document.querySelectorAll('.tab-num');
-
+const backwards = document.querySelector('.backwards');
+const rightPane = document.querySelector('.right--pane');
+const leftPane = document.querySelector('.left--pane');
 // Display Space Name view
 export function showSpaceTitle(selected) {
   spaceTitle.textContent = '';
@@ -93,4 +95,13 @@ export function countArchived(tasks) {
     return;
   }
   archived.textContent = tasks.length;
+}
+
+// Mobile responsive
+if (window.innerWidth < 900) {
+  const backwards = document.querySelector('.backwards');
+  backwards.addEventListener('click', function () {
+    rightPane.classList.add('hidden');
+    leftPane.classList.remove('hidden');
+  });
 }

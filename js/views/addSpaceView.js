@@ -7,6 +7,9 @@ const form = document.querySelector('.form');
 const input = document.querySelector('.space--input');
 const validText = document.querySelector('.space-text');
 const spacesList = document.querySelector('.spaces--list');
+const rightPane = document.querySelector('.right--pane');
+const leftPane = document.querySelector('.left--pane');
+const backwards = document.querySelector('.backwards');
 
 // UI state
 export function openForm() {
@@ -69,6 +72,11 @@ export function renderAddedSpaces(spaces, tasks) {
 
     spacesList.appendChild(li);
     li.setAttribute('data-space', space.name);
+
+    // Mobile responsive
+    if (window.innerWidth < 900) {
+      li.scrollIntoView({ behavior: 'auto' });
+    }
   });
 }
 
@@ -97,11 +105,27 @@ export function onInput(handler) {
 }
 
 export function onAddSpace(handler) {
-  addFormBtn.addEventListener('click', e => handler(e));
+  addFormBtn.addEventListener('click', function (e) {
+    handler(e);
+    if (window.innerWidth < 900) {
+      setTimeout(() => {
+        rightPane.classList.remove('hidden');
+        leftPane.classList.add('hidden');
+      }, 500);
+    }
+  });
+
   form.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
       e.preventDefault();
       handler();
+
+      if (window.innerWidth < 900) {
+        setTimeout(() => {
+          rightPane.classList.remove('hidden');
+          leftPane.classList.add('hidden');
+        }, 500);
+      }
     }
   });
 }

@@ -72,6 +72,7 @@ export function onAddTask(handler) {
     e.preventDefault();
     handler(e);
   });
+
   form.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
       e.preventDefault();

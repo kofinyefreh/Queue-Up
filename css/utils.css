@@ -33,6 +33,10 @@ html {
   display: none;
 }
 
+.block {
+  display: block;
+}
+
 .block-space-input {
   opacity: 1;
   transition: all 0.15s;
