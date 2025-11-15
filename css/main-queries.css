@@ -37,6 +37,37 @@ html {
     width: 100vw;
   }
 
+  /* When no tasks exists */
+  .space-landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .space-landing img {
+    width: 60%;
+    opacity: 0.6;
+  }
+
+  .space-landing p {
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    font-size: 2rem;
+    line-height: 3rem;
+    font-family: monospace;
+  }
+
+  .space-landing p span {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+
   /* right pane  */
   .nav-bar {
     all: initial;

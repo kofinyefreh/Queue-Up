@@ -1,12 +1,15 @@
 import * as help from '../helpers.js';
 
 const spacesList = document.querySelector('.spaces--list');
+// const spaceLanding = document.querySelector('.space-landing');
 
 // Render all spaces - Already has a selected item
 export function renderSpaces(spaces, tasks) {
   const selectedSpace = document.querySelector('.selected');
 
   spacesList.innerHTML = '';
+  // spaceLanding.innerHTML = '';
+
   spaces.forEach((space, index) => {
     // Count tasks for this space
     const taskCount = tasks.filter(
@@ -20,7 +23,7 @@ export function renderSpaces(spaces, tasks) {
     li.innerHTML = `
       <div>
         <p class="space--name">${help.capitalize(space.name)}</p>
-        <p class="last--opened">Active: ${help.calcDays(space.time)}</p>
+        <p class="last--opened">Created: ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>
     `;

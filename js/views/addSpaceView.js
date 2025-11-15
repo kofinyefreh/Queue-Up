@@ -10,6 +10,7 @@ const spacesList = document.querySelector('.spaces--list');
 const rightPane = document.querySelector('.right--pane');
 const leftPane = document.querySelector('.left--pane');
 const backwards = document.querySelector('.backwards');
+// const spaceLanding = document.querySelector('.space-landing');
 
 // UI state
 export function openForm() {
@@ -52,6 +53,7 @@ export function getInputValue() {
 
 export function renderAddedSpaces(spaces, tasks) {
   spacesList.innerHTML = '';
+  // spaceLanding.innerHTML = '';
 
   if (!spaces) return;
   spaces.forEach((space, index) => {
@@ -65,7 +67,7 @@ export function renderAddedSpaces(spaces, tasks) {
     li.innerHTML = `
       <div>
         <p class="space--name">${help.capitalize(space.name)}</p>
-        <p class="last--opened">Active: ${help.calcDays(space.time)}</p>
+        <p class="last--opened">Created: ${help.calcDays(space.time)}</p>
       </div>
       <span class="space--num">${taskCount}</span>
     `;
@@ -73,10 +75,7 @@ export function renderAddedSpaces(spaces, tasks) {
     spacesList.appendChild(li);
     li.setAttribute('data-space', space.name);
 
-    // Mobile responsive
-    if (window.innerWidth < 900) {
-      li.scrollIntoView({ behavior: 'auto' });
-    }
+    li.scrollIntoView({ behavior: 'auto' });
   });
 }
 
