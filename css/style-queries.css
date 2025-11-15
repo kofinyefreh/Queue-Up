@@ -437,7 +437,14 @@ html {
   }
 
   .footer-text {
-    width: 80%;
+    width: 90%;
+    gap: 1rem;
+  }
+
+  footer {
+    display: flex;
+    text-align: center;
+    padding: 2rem 0;
     gap: 1rem;
   }
 }

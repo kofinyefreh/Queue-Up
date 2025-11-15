@@ -43,19 +43,9 @@ body {
   font-weight: 400;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.4rem;
-  border-radius: 100px;
-  font-weight: 450;
-  background-color: rgba(0, 0, 0);
-  color: #fff;
-  letter-spacing: 0.5px;
-  cursor: pointer;
+.left--top p {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .display--spaces {

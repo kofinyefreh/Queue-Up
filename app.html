@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/utils.css" />
+    <link rel="stylesheet" href="./css/main-queries.css" />
     <link rel="shortcut icon" href="./images/favicon.png" type="images/png" />
 
     <script src="js/controllers/appController.js" type="module" defer></script>
@@ -35,6 +36,7 @@
         <section class="left--pane">
           <div class="left--top">
             <a class="logo" href="index.html">Queue up</a>
+            <p>Latest: v1.0</p>
           </div>
 
           <div class="container">
@@ -73,15 +75,17 @@
         <!-- Right Section of App -->
         <section class="right--pane">
           <nav class="nav-bar">
-            <p class="title">
-              #
-              <span contenteditable="true" class="space-title"></span>
-            </p>
+            <div class="title-nav-responsive">
+              <span class="backwards"><</span>
+              <p class="title">
+                # <span contenteditable="true" class="space-title"></span>
+              </p>
+            </div>
 
             <div class="navigation">
               <ul class="tabs">
                 <li class="tab selected-tab" data-tab="all">
-                  <p class="tab-name">All Tasks</p>
+                  <p class="tab-name">All</p>
                   <span class="tab-num">0</span>
                 </li>
                 <li class="tab" data-tab="pending">
@@ -109,7 +113,7 @@
                     />
                   </div>
 
-                  <div class="buttons">
+                  <div class="buttons responsive">
                     <button class="btn btn--2 open--task">+</button>
                     <button type="submit" class="btn btn--2 add--task hidden">
                       <i class="fa-solid fa-check tick"></i>

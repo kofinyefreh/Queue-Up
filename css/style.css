@@ -33,6 +33,7 @@ html {
 .logo {
   font-size: 2rem;
   font-family: 'Rock Salt';
+  color: black;
 }
 
 .links {
@@ -413,4 +414,14 @@ footer i {
   font-size: 1.3rem;
   padding: 1rem 0rem;
   color: rgb(0, 0, 0, 0.5);
+  letter-spacing: 0.6px;
+}
+
+.footer-text a {
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  color: blue;
+  text-decoration: none;
 }
