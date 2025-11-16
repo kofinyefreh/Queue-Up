@@ -11,7 +11,7 @@ export const renderCompletedTasks = function (tasks) {
     li.innerHTML = `
                   <div>
                     <span class="left">
-                      <div class="circle done full">
+                      <div class="circle done full" title='uncomplete'>
                           <span><i class="fa-solid fa-check tick"></i></span>
                       </div>
 

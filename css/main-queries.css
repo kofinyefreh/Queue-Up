@@ -37,6 +37,14 @@ html {
     width: 100vw;
   }
 
+  .left--top {
+    height: 13vh;
+  }
+
+  .display--spaces {
+    height: 86vh;
+  }
+
   /* When no tasks exists */
   .space-landing {
     display: flex;
@@ -71,7 +79,7 @@ html {
   /* right pane  */
   .nav-bar {
     all: initial;
-    height: 14vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -82,26 +90,27 @@ html {
   }
 
   .tabs {
-    gap: 1.2rem;
+    gap: 1.3rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
+    font-weight: 400;
     margin-top: 0.5rem;
   }
 
   .tab span {
-    font-size: 1rem;
+    font-size: 1.1rem;
     min-width: 1.5rem;
     height: 1.5rem;
-    top: -0.8rem;
-    right: -0.8rem;
+    top: -0.9rem;
+    right: -0.9rem;
   }
 
   .btn--2 {
-    margin-top: -9rem;
-    margin-right: 1rem;
+    margin-top: -12rem;
+    margin-right: 3rem;
     z-index: 1000;
   }
 
@@ -115,8 +124,8 @@ html {
   }
 
   .buttons.space-buttons {
-    right: 1.9rem;
-    bottom: 1.95rem;
+    right: 3.9rem;
+    bottom: 4.95rem;
   }
 
   .buttons {
@@ -136,19 +145,26 @@ html {
 
   .backwards {
     display: block;
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 3rem;
+    font-weight: 600;
     margin-right: 0.5rem;
     font-family: monospace;
-    color: rgb(0, 0, 0, 0.8);
+    color: rgb(0, 0, 0, 0.7);
+    cursor: pointer;
   }
 
   .title {
     padding: 1rem;
     margin-top: 0.8rem;
-    font-size: 1.5rem;
-    text-align: right;
+    font-size: 2.5rem;
     display: inline;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .space-title {
+    font-weight: 400;
+    font-size: 2.3rem;
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .responsive {
@@ -159,6 +175,8 @@ html {
 
   .tab {
     padding: 0.3rem 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 450;
   }
 
   /* form */
@@ -180,6 +198,10 @@ html {
     z-index: 1000;
   }
 
+  .form--space {
+    bottom: 14rem;
+  }
+
   .space--input {
     font-size: 1.5rem;
   }
@@ -199,15 +221,16 @@ html {
 
   .task-list {
     border-top: none;
-    height: 86vh;
+    height: 84vh;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .task-name {
-    font-size: 1.4rem;
+    font-size: 1.45rem;
   }
 
   .date {
-    font-size: 0.95rem;
+    font-size: 01rem;
   }
 
   .date i {
@@ -218,5 +241,16 @@ html {
 
   .tag {
     font-size: 0.9rem;
+  }
+
+  /* Action buttons */
+  .delete {
+    background-color: rgb(200, 0, 0, 0.1);
+    border: none;
+  }
+
+  .archive {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
   }
 }

@@ -11,7 +11,7 @@ export const renderPendingTasks = function (tasks) {
     li.innerHTML = `
                   <div>
                     <span class="left">
-                      <div class="circle done">
+                      <div class="circle done" title='complete'>
                           <span><i class="fa-solid fa-check tick"></i></span>
                       </div>
 
